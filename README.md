@@ -1,6 +1,8 @@
 [English](README.en.md)
 
-`# dsh-hyperframes
+# dsh-hyperframes
+
+> **在 20+ 个 agent 里写视频**：HyperFrames by HeyGen 五件套，HTML 即视频。
 
 ![npm version](https://img.shields.io/npm/v/dsh-hyperframes?label=npm&color=blue) ![npm downloads](https://img.shields.io/npm/dm/dsh-hyperframes) ![license](https://img.shields.io/npm/l/dsh-hyperframes) ![stars](https://img.shields.io/github/stars/STARDUSTLC666/dsh-hyperframes?style=social)
 
