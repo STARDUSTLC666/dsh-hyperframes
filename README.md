@@ -6,6 +6,8 @@
 
 ![npm version](https://img.shields.io/npm/v/dsh-hyperframes?label=npm&color=blue) ![npm downloads](https://img.shields.io/npm/dm/dsh-hyperframes) ![license](https://img.shields.io/npm/l/dsh-hyperframes) ![stars](https://img.shields.io/github/stars/STARDUSTLC666/dsh-hyperframes?style=social)
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
 
 DSH（DeepSeek Harness）视频创作技能插件：**安装即把 HyperFrames by HeyGen 官方移植技能五件套注册进 DSH**（HTML 写视频：合成、GSAP 动画、字幕、配音、音频响应、网址转视频）。
 
