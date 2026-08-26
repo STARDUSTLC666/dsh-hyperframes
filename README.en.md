@@ -6,6 +6,10 @@
 
 DSH (DeepSeek Harness) video-creation skill plugin: installing it registers the five official HyperFrames by HeyGen skills into DSH (video from HTML: compositions, GSAP animation, captions, voiceovers, audio-reactive visuals, website-to-video).
 
+## Compatibility
+
+Verified against `@deepseek-ai/dsh@0.1.1-rc.2` on 2026-08-26. Built for the cordis patch-bundle plugin model (`cordis.patch.yml` + `dsh.bundle.patch`). No runtime imports of `@deepseek-ai/*` internals.
+
 ## Installation
 
 ```bash
@@ -13,6 +17,15 @@ dsh plugin --profile web add dsh-hyperframes
 ```
 
 After restarting, say "turn this website into a HyperFrames video" to trigger it.
+
+## Uninstall
+
+```bash
+dsh plugin --profile web remove dsh-hyperframes
+```
+
+Then restart the web service. To clean up fully, also remove the plugin entry from your profile `cordis.patch.yml` if you overrode it.
+
 
 ## Skills
 
@@ -49,4 +62,3 @@ Port once, use everywhere.
 ## License
 
 MIT for the porting arrangement; skill content copyright remains with HeyGen.
-
