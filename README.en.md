@@ -6,7 +6,7 @@
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-DSH (DeepSeek Harness) video-creation skill plugin: installing it registers the five official HyperFrames by HeyGen skills into DSH (video from HTML: compositions, GSAP animation, captions, voiceovers, audio-reactive visuals, website-to-video).
+DSH (DeepSeek Harness) video-creation skill plugin: installing it registers the twenty official HyperFrames by HeyGen skills into DSH (video from HTML: core workflow, animation, audio, captions, keyframes, creative templates, CLI, registry, website-to-video; synced with official v0.8.20).
 
 ## Compatibility
 
@@ -33,11 +33,26 @@ Then restart the web service. To clean up fully, also remove the plugin entry fr
 
 | Skill | Purpose |
 | :-- | :-- |
-| `hyperframes` | HTML video compositions: visual styles/palettes/captions/audio-reactive/transitions |
+| `hyperframes` | Router: HTML video compositions (styles/palettes/captions/audio-reactive/transitions) |
+| `hyperframes-core` | Core concepts and component model |
+| `hyperframes-animation` | Animation: GSAP/Anime.js/Lottie/Three.js/WAAPI adapters |
+| `hyperframes-audio` | Audio: voiceovers, audio-reactive visuals |
+| `hyperframes-keyframes` | Keyframe animation |
+| `hyperframes-creative` | Creative templates and styles |
 | `hyperframes-cli` | `npx hyperframes` CLI (init/lint/inspect/preview/render/transcribe/tts/doctor) |
 | `hyperframes-registry` | `hyperframes add` registry block installation and wiring |
-| `website-to-hyperframes` | Seven-step website-to-video pipeline |
-| `gsap` | GSAP animation API reference (tweens/timelines/easing/performance) |
+| `embedded-captions` | Embedded captions |
+| `faceless-explainer` | Faceless explainer videos |
+| `figma` | Figma asset integration |
+| `general-video` | General video production |
+| `media-use` | Media usage guidelines |
+| `motion-graphics` | Motion graphics |
+| `music-to-video` | Music-driven video |
+| `pr-to-video` | PR-to-video |
+| `product-launch-video` | Product launch videos |
+| `remotion-to-hyperframes` | Remotion project migration |
+| `slideshow` | Slideshow videos |
+| `talking-head-recut` | Talking-head recuts |
 
 ## Requirements
 

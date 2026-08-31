@@ -32,7 +32,28 @@ export interface SkillsPluginContext {
 }
 
 /** 随包分发的技能清单。 */
-export const SKILL_NAMES = ["hyperframes","hyperframes-cli","hyperframes-registry","website-to-hyperframes","gsap"] as const
+export const SKILL_NAMES = [
+  "embedded-captions",
+  "faceless-explainer",
+  "figma",
+  "general-video",
+  "hyperframes",
+  "hyperframes-animation",
+  "hyperframes-audio",
+  "hyperframes-cli",
+  "hyperframes-core",
+  "hyperframes-creative",
+  "hyperframes-keyframes",
+  "hyperframes-registry",
+  "media-use",
+  "motion-graphics",
+  "music-to-video",
+  "pr-to-video",
+  "product-launch-video",
+  "remotion-to-hyperframes",
+  "slideshow",
+  "talking-head-recut",
+] as const
 
 /** 打包技能目录的绝对路径。 */
 export function bundledSkillsDir(): string {

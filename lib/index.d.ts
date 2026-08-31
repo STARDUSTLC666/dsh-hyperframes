@@ -23,7 +23,7 @@ export interface SkillsPluginContext {
     on?(event: string, listener: () => void): () => void;
 }
 /** 随包分发的技能清单。 */
-export declare const SKILL_NAMES: readonly ["hyperframes", "hyperframes-cli", "hyperframes-registry", "website-to-hyperframes", "gsap"];
+export declare const SKILL_NAMES: readonly ["embedded-captions", "faceless-explainer", "figma", "general-video", "hyperframes", "hyperframes-animation", "hyperframes-audio", "hyperframes-cli", "hyperframes-core", "hyperframes-creative", "hyperframes-keyframes", "hyperframes-registry", "media-use", "motion-graphics", "music-to-video", "pr-to-video", "product-launch-video", "remotion-to-hyperframes", "slideshow", "talking-head-recut"];
 /** 打包技能目录的绝对路径。 */
 export declare function bundledSkillsDir(): string;
 /** 检查随包技能资源完整性：每个技能的 SKILL.md 是否存在。 */

@@ -1,152 +1,170 @@
 ---
 name: hyperframes-cli
-description: "HyperFrames CLI tool — hyperframes init, lint, inspect, preview, render, transcribe, tts, doctor, browser, info, upgrade, compositions, docs, benchmark. Use when scaffolding a project, linting, validating, inspecting visual layout in compositions, previewing in the studio, rendering to video, transcribing audio, generating TTS, or troubleshooting the HyperFrames environment. 中文：使用 hyperframes 命令行（初始化/校验/预览/渲染/转写/配音/环境诊断）时使用。"
-compatibility: Requires Node.js >= 22 and FFmpeg on PATH; the CLI runs via `npx hyperframes`.
-allowed-tools: Bash
+description: >
+  Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot,
+  compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish,
+  cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, docs,
+  benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build
+  or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local,
+  HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.
 ---
 
 # HyperFrames CLI
 
-Everything runs through `npx hyperframes`. Requires Node.js >= 22 and FFmpeg.
+Run commands as `npx hyperframes ...` unless project instructions provide a wrapper. Obey the wrapper when present. The CLI requires Node.js 22 or newer and FFmpeg.
 
-## Workflow
+## Development loop
 
-1. **Scaffold** — `npx hyperframes init my-video`
-2. **Write** — author HTML composition (see the `hyperframes` skill)
-3. **Lint** — `npx hyperframes lint`
-4. **Visual inspect** — `npx hyperframes inspect`
-5. **Preview** — `npx hyperframes preview`
-6. **Render** — `npx hyperframes render`
+1. **Scaffold:** `npx hyperframes init <project>` or capture a site. In non-TTY mode, pass `--non-interactive --example=<name>`.
+2. **Find the move:** before authoring motion by hand, search for a primitive that already does it: `npx hyperframes catalog --query "reveal a headline one line at a time"`. Ask for the effect you want rather than the mechanism you have in mind. Install with `npx hyperframes add <name>` (see `/hyperframes-registry`). Author by hand only once nothing fits.
+3. **Author:** write the composition using `/hyperframes-core`.
+4. **Get fast feedback while editing:** run `npx hyperframes lint` after the first HTML pass and after structural changes.
+5. **Run the final gate:** run `npx hyperframes check`; it reruns lint before opening the browser. Do not prepend a redundant standalone lint invocation. Add `--snapshots` for annotated overview frames and finding crops.
+6. **Inspect sub-compositions:** when `index.html` mounts `data-composition-src`, capture midpoint snapshots and inspect each mounted scene.
+7. **Open the final Studio preview:** run `npx hyperframes preview --background`, verify the URL returns HTTP 200, hand the timeline project URL to the user, and ask whether to revise or render. Keep it alive until review ends.
+8. **Render only after approval:** use draft quality for iteration and high quality for delivery.
+9. **Verify the output:** confirm the file exists, is non-empty, and has a plausible duration.
 
-Lint and inspect before preview. `lint` catches missing `data-composition-id`, overlapping tracks, and unregistered timelines. `inspect` opens the rendered composition in headless Chrome, seeks through the timeline, and reports text spilling out of bubbles/containers or off the canvas.
+## Mandatory creator-edit cross-references
 
-## Scaffolding
-
-```bash
-npx hyperframes init my-video                        # interactive wizard
-npx hyperframes init my-video --example warm-grain   # pick an example
-npx hyperframes init my-video --video clip.mp4        # with video file
-npx hyperframes init my-video --audio track.mp3       # with audio file
-npx hyperframes init my-video --non-interactive       # skip prompts (CI/agents)
-```
-
-Templates: `blank`, `warm-grain`, `play-mode`, `swiss-grid`, `vignelli`, `decision-tree`, `kinetic-type`, `product-promo`, `nyt-graph`.
-
-`init` creates the right file structure, copies media, transcribes audio with Whisper, and installs AI coding skills. Use it instead of creating files by hand.
-
-## Linting
-
-```bash
-npx hyperframes lint                  # current directory
-npx hyperframes lint ./my-project     # specific project
-npx hyperframes lint --verbose        # info-level findings
-npx hyperframes lint --json           # machine-readable
-```
-
-Lints `index.html` and all files in `compositions/`. Reports errors (must fix), warnings (should fix), and info (with `--verbose`).
-
-## Visual Inspect
+- Before authoring or diagnosing a zoom, punch-in/punch-out, reframe, camera
+  move, or any keyframe motion, read `/hyperframes-keyframes` first.
+- Before `hyperframes keyframes`, read `/hyperframes-keyframes`; the command
+  surfaces animation trajectories and does not diagnose clip cuts.
+- For a cut, trim, splice, reorder, or source timing edit, read
+  `/hyperframes-core` and use its clip/timeline contract.
+- For fade-in/fade-out, crossfade, track gain, volume automation, ducking,
+  voiceover carve, or FX on placed audio, read `/hyperframes-audio`. Load core
+  alongside it when clip placement or picture timing also changes.
+- Use `/media-use` only to source/generate media or preprocess a derived asset.
+  Copy creator edit markup from `/hyperframes-core` → `references/creator-editing-recipes.md`.
 
 ```bash
-npx hyperframes inspect                 # inspect rendered layout over the timeline
-npx hyperframes inspect ./my-project    # specific project
-npx hyperframes inspect --json          # agent-readable findings
-npx hyperframes inspect --samples 15    # denser timeline sweep
-npx hyperframes inspect --at 1.5,4,7.25 # explicit hero-frame timestamps
+# Fast iteration check; repeat while authoring as needed.
+npx hyperframes lint
+
+# Required final gate; includes lint.
+npx hyperframes check
+npx hyperframes preview --background
+npx hyperframes render --quality high --output out.mp4
+test -s out.mp4
+ffprobe -v error -show_format out.mp4
 ```
 
-Use this after `lint` and `validate`, especially for compositions with speech bubbles, cards, captions, or tight typography. It reports:
+`check` runs lint first, then uses one browser session and one seek pass to audit runtime errors, failed requests, layout, `*.motion.json` assertions, and WCAG contrast. Persistent findings gate the exit code; transient entrance or exit findings are informational. Use `--strict` to gate warnings. `validate`, `inspect`, and `layout` remain aliases for compatibility but must not appear in new instructions or scripts.
 
-- Text extending outside the nearest visual container or bubble
-- Text clipped by its own fixed-width/fixed-height box
-- Text extending outside the composition canvas
-- Children escaping clipping containers
+## Two different preview surfaces
 
-Errors should be fixed before rendering. Warnings are surfaced for agent review; add `--strict` to fail on warnings too. Repeated static issues are collapsed by default so JSON output stays compact for LLM context windows. If overflow is intentional for an entrance/exit animation, mark the element or ancestor with `data-layout-allow-overflow`. If a decorative element should never be audited, mark it with `data-layout-ignore`.
+Do not confuse these states:
 
-`npx hyperframes layout` remains available as a compatibility alias for the same visual inspection pass.
+| Surface                   | When it may open                                       | Purpose                                                                           |
+| ------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| Storyboard board          | Before composition checks, only when `storyboard: yes` | Review plan cards and wireframe sketches. Open `?view=storyboard#project/<name>`. |
+| Final composition preview | After `check` passes                                   | Review the assembled timeline before render. Open `#project/<name>`.              |
 
-## Previewing
+The early board is not approval of the final video. Rendering always requires the final approval defined by `hyperframes-core/references/review-loop.md`.
+
+## Sub-composition smoke test
+
+Static audits cannot catch every mount failure. When the project uses sub-compositions, capture at least one visible midpoint for each host slot:
 
 ```bash
-npx hyperframes preview                   # serve current directory
-npx hyperframes preview --port 4567       # custom port (default 3002)
+npx hyperframes snapshot --at <t1>,<t2>,<t3>
 ```
 
-Hot-reloads on file changes. Opens the studio in your browser automatically.
+Treat tiny unstyled content, canvas-sized icons, missing hero elements, or timeline-registration timeouts as render-blocking mount defects. See `hyperframes-core/references/sub-compositions.md` for the corresponding fixes.
 
-When handing a project back to the user, use the Studio project URL, not the
-source `index.html` path:
+## Agent conventions
 
-```text
-http://localhost:<port>/#project/<project-name>
-```
+- **Search the catalog before writing motion by hand.** `npx hyperframes catalog --query "<the beat, in plain English>"`. Search is entirely local: there is no hosted tier, no account, and the query text is never sent anywhere. By default it ranks on vocabulary shared with the item's name, title and description, which misses any phrasing that does not reuse the catalog's own wording. Add `--on-device` to rank by meaning instead (see the offline tier below).
+- **Query in English even when the video is not.** Both tiers index an English catalog, so a query in another script produces no searchable terms and returns nothing. Describe the move in English; the on-screen copy stays in whatever language the video needs. `No searchable words in query` means exactly this and is not a missing component, so do not report it as a catalog gap.
+- **Read which tier answered; never infer it from results appearing.** With `--json` the envelope carries `query`, `tier` (`on-device` or `words`), `tier_detail`, `dropped`, `unindexed`, `shown`, `total` and `results`, plus `top_score` when the answering tier produces one and `warnings` when a tier was asked for and could not run. A weak result on `words` is expected; the same result on `on-device` is a bug. `top_score` is on-device only and has no threshold behind it: the ranker returns the whole catalog in some order for every query, so read it as evidence rather than as a pass or fail.
+- **`dropped` and `unindexed` are opposite skews between the registry and the on-device index, and rewording the query fixes neither.** `dropped` counts ranked names this registry cannot install, so the strongest matches are the ones being lost. `unindexed` counts registry moves the index cannot see at all, which no query can ever return. Refreshing the registry is not the answer to either: its manifest carries a 24h TTL and heals itself, while the vectors are a separately published artifact fetched into `~/.hyperframes/catalog/`. Re-running with `--on-device` refetches that index when `unindexed` is above zero, so that is the remedy to hand the user. A pure over-coverage skew (`dropped` above zero while `unindexed` is zero) does not trigger the refetch; clearing `~/.hyperframes/catalog/` is the only way out of that one. Both counts are of names rather than of results, so either can exceed `total`.
+- **When a search comes back with nothing worth installing, say so.** `npx hyperframes feedback --search-miss "<the query you ran>" --wanted "<the move you needed>" --tier <the tier that answered>`. You do not have to assemble that line: `catalog --query` prints it pre-filled, and every `--json` search envelope carries it as `report_gap` with the query and tier already correct — fill in `--wanted` and send. This is the only path that sends a query anywhere, and it is a separate deliberate command precisely so plain `catalog --query` keeps its promise of sending nothing. **Report on either tier**, whenever the results do not do the thing; do not hold out for the on-device tier, which needs a consented 33 MB download and is therefore off in most agent runs — waiting for it means never reporting at all. The tier rides along in the report, so a vocabulary miss stays distinguishable from a meaning miss without you having to judge which one you hit. What comes back is a list of moves the catalog does not have yet, read directly rather than guessed from install counts, so the phrasing that matters is the effect you wanted, not the item name you imagined. It carries no rating and never lands in the rating metric.
+- **Offer the offline tier; never enable it silently.** A one-time ~33 MB download (a quantized ONNX build of `bge-small-en-v1.5` plus its tokenizer, pinned to a fixed revision) and the catalog vectors from the registry, both cached under `~/.hyperframes/`, neither added to the project or any package. Once cached it ranks by meaning with nothing sent. Say the size out loud and let the person decide, then pass `--on-device` (with `-y` to skip the prompt) once they agree. The interactive offer only fires on a TTY, and under `--json` nothing about it is printed at all, so in an agent run you have to raise it with the user yourself.
 
-Use the actual port from the preview output and the project directory name. For
-example, after `npx hyperframes preview --port 3017` in `hyperframes-video`,
-report `http://localhost:3017/#project/hyperframes-video`.
+- Prefer `--json` for agent and CI calls. Server-mode `render`, `preview`, and `play` do not provide ordinary JSON output; `preview --selection --json` and `preview --context --json` are query-mode exceptions.
+- `doctor --json` always exits zero. Gate on its payload:
 
-Treat `index.html` as source-code context only. It is fine to link it as an
-implementation file, but do not label it as the project or preview surface.
+  ```bash
+  npx hyperframes doctor --json | jq -e '.ok' >/dev/null
+  ```
 
-## Rendering
+- Non-TTY mode is automatic. `init` requires `--example` there; use `--non-interactive` to force deterministic behavior on a TTY.
+- Use one `HYPERFRAMES_RUN_ID` for all commands in the same verification loop.
+- Use `--strict`, `--strict-all`, and `--strict-variables` when the corresponding warnings, variables, or CI conditions must gate the render.
+- JSON paths redact the home directory as `$HOME`; do not try to reverse the redaction.
+- When a hosted cloud project approaches or exceeds the 200 MB upload limit, use `cloud render --dry-run --json` and follow the `.hyperframesignore` investigation in `references/cloud.md`. Never ignore an asset merely because it is large.
+- Never render merely because checks pass. Pause at the final preview and wait for approval.
+
+## Studio-directed edits
+
+When the user refers to “this element” or the current selection, query Studio instead of guessing:
 
 ```bash
-npx hyperframes render                                # standard MP4
-npx hyperframes render --output final.mp4             # named output
-npx hyperframes render --quality draft                # fast iteration
-npx hyperframes render --fps 60 --quality high        # final delivery
-npx hyperframes render --format webm                  # transparent WebM
-npx hyperframes render --docker                       # byte-identical
+npx hyperframes preview --context --json --context-fields selection
 ```
 
-| Flag           | Options               | Default                    | Notes                       |
-| -------------- | --------------------- | -------------------------- | --------------------------- |
-| `--output`     | path                  | renders/name_timestamp.mp4 | Output path                 |
-| `--fps`        | 24, 30, 60            | 30                         | 60fps doubles render time   |
-| `--quality`    | draft, standard, high | standard                   | draft for iterating         |
-| `--format`     | mp4, webm             | mp4                        | WebM supports transparency  |
-| `--workers`    | 1-8 or auto           | auto                       | Each spawns Chrome          |
-| `--docker`     | flag                  | off                        | Reproducible output         |
-| `--gpu`        | flag                  | off                        | GPU-accelerated encoding    |
-| `--strict`     | flag                  | off                        | Fail on lint errors         |
-| `--strict-all` | flag                  | off                        | Fail on errors AND warnings |
+Use `selection.target.hfId` when available, otherwise its selector and source file. If the result reports `no-selection`, ask the user to click the element and rerun. Request only the context slices you need; use `--context-detail full` only for computed styles or editable text metadata. Full behavior and failure codes live in `references/preview-render.md`.
 
-**Quality guidance:** `draft` while iterating, `standard` for review, `high` for final delivery.
+## Render choices
 
-## Transcription
+| Need                                     | Command                                                                       |
+| ---------------------------------------- | ----------------------------------------------------------------------------- |
+| Fast local iteration                     | `npx hyperframes render --quality draft`                                      |
+| Final local delivery                     | `npx hyperframes render --quality high --output out.mp4`                      |
+| Reproducible container render            | `npx hyperframes render --docker --strict --output out.mp4`                   |
+| Local variable-driven batch render       | `npx hyperframes render --batch rows.json --output "renders/{name}.mp4"`      |
+| HeyGen-hosted zero-infrastructure render | `npx hyperframes cloud render`                                                |
+| Self-managed distributed AWS render      | `npx hyperframes lambda render <project> --width 1920 --height 1080 --wait`   |
+| Self-managed distributed GCP render      | `npx hyperframes cloudrun render <project> --width 1920 --height 1080 --wait` |
+
+Skill attribution is automatic — the examples above need no `--skill`. A project scaffolded by a workflow (`hyperframes init --skill=<workflow>`) records its owning skill in `hyperframes.json`, and every later render inherits it on anonymous telemetry: re-renders, `npm run render`, and `--batch` alike. Pass `--skill=<slug>` explicitly only to stamp a project that was not created through a workflow (its first render then persists it).
+
+Use cloud rendering when the user wants hosted rendering without local Chrome, FFmpeg, or AWS. Use Lambda only when AWS ownership is a requirement. Use Cloud Run only when GCP ownership is a requirement. Read the matching reference before running any cloud path.
+
+After verifying a successful render, send one feedback report unless telemetry is disabled or the user opted out:
 
 ```bash
-npx hyperframes transcribe audio.mp3
-npx hyperframes transcribe video.mp4 --model medium.en --language en
-npx hyperframes transcribe subtitles.srt   # import existing
-npx hyperframes transcribe subtitles.vtt
-npx hyperframes transcribe openai-response.json
+npx hyperframes feedback --rating <0-10> --comment "<specific result or friction>"
 ```
 
-## Text-to-Speech
+Keep clean-run feedback concise. For any bug or friction, capture a **reproduction packet** before submitting; do not send only a symptom summary. Include the rerunnable command (relative to the project directory — feedback is submitted to a public channel, so do **not** paste absolute paths, home-directory prefixes, or user/machine identifiers), expected versus actual behavior, exact error (also strip absolute paths from stack traces — keep basename + line, drop the leading directory), whether output completed/fell back/failed, workaround, and repro-project status. For a rating ≤ 7 that describes a visual defect (black frame, flicker, corrupt output, wrong frame, blank output, other visual anomaly), also include a `COMPOSITION_STRUCTURE:` block — a privacy-preserving structural anatomy (element census + attribute presence + timeline shape) so maintainers can pattern-match against known bug families without the composition ZIP. Agents auto-fill this via the composition-census helper; the human user does not fill it by hand. If the issue did not reproduce again, say so and still include the last failing command and logs. Use `--file-issue` only with consent: it publishes a minimal reproduction to a public URL. The required packet format and privacy warning live in `references/preview-render.md`.
+
+## Read the matching reference before running a command
+
+The following references and owning skills are mandatory command contracts, not optional background reading. Before running a command in the table, read its matching row.
+
+| Need                                                                                   | Reference                             |
+| -------------------------------------------------------------------------------------- | ------------------------------------- |
+| `init`, `capture`, `skills`                                                            | `references/init-and-scaffold.md`     |
+| `lint`, `check`, motion sidecars, `snapshot`                                           | `references/lint-validate-inspect.md` |
+| `compare`, `grade-compare`, variable-driven `render --batch`                           | `references/compare-and-batch.md`     |
+| `beats` for an existing project's Studio beat grid                                     | `references/beats.md`                 |
+| `preview`, `play`, `render`, `publish`, Studio context, feedback                       | `references/preview-render.md`        |
+| `doctor`, browser management                                                           | `references/doctor-browser.md`        |
+| `auth`, HeyGen-hosted cloud rendering, and template variables                          | `references/cloud.md`                 |
+| AWS Lambda deployment and rendering                                                    | `references/lambda.md`                |
+| Google Cloud Run deployment and rendering                                              | `references/cloudrun.md`              |
+| `info`, `upgrade`, `compositions`, `docs`, `benchmark`, telemetry, media preprocessing | `references/upgrade-info-misc.md`     |
+
+For composition variables, also read `/hyperframes-core` → `references/variables-and-media.md`. For `hyperframes add` and `hyperframes catalog`, use `/hyperframes-registry`. Before `hyperframes present`, read `/slideshow`; before `hyperframes keyframes`, read `/hyperframes-keyframes`. For TTS, transcription, captions, or background removal choices, use `/media-use`.
+
+The specialized commands are deliberately documented by their owning workflows:
 
 ```bash
-npx hyperframes tts "Text here" --voice af_nova --output narration.wav
-npx hyperframes tts script.txt --voice bf_emma
-npx hyperframes tts --list  # show all voices
+npx hyperframes present <project-dir> --port 3004 --no-open
+npx hyperframes beats <project-dir> --json
+npx hyperframes keyframes <project-dir> --json
+npx hyperframes media-treatment --capabilities
+npx hyperframes figma asset KEY:10-20
 ```
 
-## Troubleshooting
+`present` serves a navigable deck with presenter and audience synchronization. `beats` is the standalone Studio beat-grid utility defined in `references/beats.md`. `keyframes` surfaces seek-safe animation and motion-path diagnostics. `media-treatment` discovers, applies, and clears deterministic looks on local footage — start with `--capabilities` for the overview and `--capability <name>` for one family; `/media-use` owns which treatment a brief is asking for. `figma` imports over the REST API with the `asset`, `tokens`, and `component` subcommands and needs `FIGMA_TOKEN`; motion and shader import have no REST endpoint and are agent-only, so `/figma` owns those.
 
-```bash
-npx hyperframes doctor       # check environment (Chrome, FFmpeg, Node, memory)
-npx hyperframes browser      # manage bundled Chrome
-npx hyperframes info         # version and environment details
-npx hyperframes upgrade      # check for updates
-```
+## Commands you should not run
 
-Run `doctor` first if rendering fails. Common issues: missing FFmpeg, missing Chrome, low memory.
+Two entries in `hyperframes --help` are not part of the authoring loop, and reaching for them wastes a turn:
 
-## Other
-
-```bash
-npx hyperframes compositions   # list compositions in project
-npx hyperframes docs           # open documentation
-npx hyperframes benchmark .    # benchmark render performance
-```
+- `events` is the telemetry endpoint skills use to report their **own** invocation, ideally from a bundled script. It emits an anonymous event and exits 0 no matter what you pass it. It is not a way to read telemetry back, and an agent has no reason to call it by hand.
+- `validate`, `inspect`, and `layout` are deprecated aliases kept for old scripts. `check` is the one that is maintained, and it is what every reference in this skill assumes.

@@ -32,9 +32,9 @@ test('inject 声明 skills', () => {
 test('apply 注册 5 个技能且字段完整', () => {
   const { ctx, registered } = makeFakeCtx()
   apply(ctx)
-  assert.equal(registered.length, 5)
+  assert.equal(registered.length, 20)
   const names = registered.map((s) => s.name).sort()
-  assert.deepEqual(names, ["gsap","hyperframes","hyperframes-cli","hyperframes-registry","website-to-hyperframes"])
+  assert.deepEqual(names, [...SKILL_NAMES].sort())
   for (const skill of registered) {
     assert.ok(skill.description.length > 20, skill.name + ' 有描述')
     assert.ok(skill.content.length > 200, skill.name + ' 有正文')
@@ -47,7 +47,7 @@ test('apply 注册 5 个技能且字段完整', () => {
 test('dispose 卸载全部技能', () => {
   const { ctx, registered, listeners } = makeFakeCtx()
   apply(ctx)
-  assert.equal(registered.length, 5)
+  assert.equal(registered.length, 20)
   for (const listener of listeners.dispose ?? []) listener()
   assert.equal(registered.length, 0)
 })
