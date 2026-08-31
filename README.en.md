@@ -1,5 +1,7 @@
 [中文](README.md)
 
+![npm](https://img.shields.io/npm/v/dsh-hyperframes) ![downloads](https://img.shields.io/npm/dm/dsh-hyperframes) ![license](https://img.shields.io/github/license/STARDUSTLC666/dsh-hyperframes) ![stars](https://img.shields.io/github/stars/STARDUSTLC666/dsh-hyperframes?style=social)
+
 # dsh-hyperframes
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
