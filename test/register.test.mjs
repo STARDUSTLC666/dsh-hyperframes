@@ -29,7 +29,7 @@ test('inject 声明 skills', () => {
   assert.deepEqual(inject, ['skills', 'tools'])
 })
 
-test('apply 注册 5 个技能且字段完整', () => {
+test('apply 注册 20 个技能且字段完整', () => {
   const { ctx, registered } = makeFakeCtx()
   apply(ctx)
   assert.equal(registered.length, 20)
