@@ -6,7 +6,7 @@
 
 [![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
 
-DSH (DeepSeek Harness) video-creation skill plugin: installing it registers the twenty official HyperFrames by HeyGen skills into DSH (video from HTML: core workflow, animation, audio, captions, keyframes, creative templates, CLI, registry, website-to-video; synced with official v0.8.20).
+DSH (DeepSeek Harness) video-creation skill plugin: installing it registers the twenty-one official HyperFrames by HeyGen skills into DSH (video from HTML: core workflow, animation, audio, captions, keyframes, creative templates, CLI, registry, website-to-video; synced with official v0.8.82).
 
 ## Compatibility
 
@@ -39,8 +39,9 @@ Then restart the web service. To clean up fully, also remove the plugin entry fr
 | `hyperframes-audio` | Audio: voiceovers, audio-reactive visuals |
 | `hyperframes-keyframes` | Keyframe animation |
 | `hyperframes-creative` | Creative templates and styles |
-| `hyperframes-cli` | `npx hyperframes` CLI (init/lint/inspect/preview/render/transcribe/tts/doctor) |
+| `hyperframes-cli` | `npx hyperframes` CLI (init/check/preview/render/timeline/publish/cloud/transcribe/tts/doctor, ...) |
 | `hyperframes-registry` | `hyperframes add` registry block installation and wiring |
+| `hyperframes-studio` | Studio timeline conventions: track layering, caption track, safe zones |
 | `embedded-captions` | Embedded captions |
 | `faceless-explainer` | Faceless explainer videos |
 | `figma` | Figma asset integration |
@@ -60,7 +61,7 @@ Node.js 22.19+ (22.x) / 24+ + FFmpeg (`npx hyperframes`).
 
 ## Porting notes
 
-Ported from the official OpenAI Codex HyperFrames by HeyGen plugin cache: frontmatter converted to the DSH format, Codex-only `agents/` stripped, and all internal references verified.
+Synced from the official `heygen-com/hyperframes` repository at v0.8.82 (2026-09-28): the complete packaged `skills/` tree, 21 skills, copied as-is with no frontmatter changes. Since v0.8.20, `hyperframes-studio` (Studio timeline conventions) is new, the brief/storyboard/script docs moved from `hyperframes-core` to the `hyperframes` skill, `media-use` and `music-to-video` were substantially reworked (built-in motion primitives), and the `embedded-captions` scripts were upgraded upstream.
 
 ## Multi-harness
 

@@ -1,15 +1,6 @@
 import { wordListsFromMediaMeta } from "./words.mjs";
 
-/**
- * Speech spans from word timestamps.
- *
- * audio_meta.json word times are relative to EACH LINE'S OWN FILE, not to the
- * composition. Without placement info, multiple lines would overlap at t=0 and
- * merge into one bogus span. Placement options:
- *   offsets:    { [voiceId]: startSeconds } explicit composition placement
- *   sequential: stack lines back to back (plus `gap` seconds between lines)
- * A single word list (bare transcript) needs neither.
- */
+// audio_meta.json word times are relative to each line's own file.
 export function speechSpans(meta, { mergeGap = 0.6, offsets, sequential = false, gap = 0 } = {}) {
   const merge = Number(mergeGap);
   const lists = wordListsFromMediaMeta(meta);
@@ -61,6 +52,21 @@ export function duckKeyframes(
     });
   }
   return keyframes.sort((a, b) => a.time - b.time);
+}
+
+/** Volume lane for `data-automation`: composition-time keyframes as clip-local ramps. */
+export function duckLane(keyframes, { clipStart = 0, baseVolume = 1 } = {}) {
+  const start = finiteOr(clipStart, 0);
+  const points = [{ t: 0, v: round3(finiteOr(baseVolume, 1)) }];
+  const push = (t, v) => {
+    if (t > points.at(-1).t) points.push({ t: round3(t), v });
+  };
+  for (const kf of keyframes) {
+    const t = Math.max(0, kf.time - start);
+    push(t, points.at(-1).v);
+    push(t + kf.duration, kf.volume);
+  }
+  return { version: 1, lanes: [{ target: "volume", points }] };
 }
 
 function mergeIntervals(intervals, mergeGap) {

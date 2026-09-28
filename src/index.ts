@@ -25,6 +25,7 @@ export const SKILL_NAMES = [
   "hyperframes-creative",
   "hyperframes-keyframes",
   "hyperframes-registry",
+  "hyperframes-studio",
   "media-use",
   "motion-graphics",
   "music-to-video",

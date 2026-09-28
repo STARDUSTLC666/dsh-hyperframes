@@ -15,7 +15,7 @@
 //
 // ── audio_request.json (input) ────────────────────────────────────────────────
 //   {
-//     "provider": "auto",          // auto|heygen|elevenlabs|kokoro (override: --provider)
+//     "provider": "auto",          // auto|heygen|elevenlabs|kokoro|gemini (override: --provider)
 //     "lang": "en", "speed": 1.0,
 //     "lines": [                   // one TTS unit each; id joins back to the caller's model
 //       { "id": "01", "text": "...", "sfx": ["whoosh", "ui click"] }
@@ -39,7 +39,7 @@
 // the generate path it is spawned detached (bgm_pending:true) — run wait-bgm.mjs
 // before assembling.
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { heygenAuthHeaders, heygenCredential, loadEnvFromDir } from "./lib/heygen.mjs";
@@ -54,6 +54,7 @@ import {
 import { generateBgmDetached, inferBgmPrompt, retrieveBgm } from "./lib/bgm.mjs";
 import { resolveSfx } from "./lib/sfx.mjs";
 import { mapWithConcurrency } from "./lib/concurrency.mjs";
+import { openAudioMeta } from "./lib/audio-meta.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const argv = process.argv.slice(2);
@@ -112,10 +113,10 @@ const speed = Number(speedOverride ?? request.speed ?? 1.0) || 1.0;
 // ── env + HeyGen availability (the single switch) ─────────────────────────────
 loadEnvFromDir(hyperframesDir);
 const heygenOK = heygenCredential() !== null;
-const headers = heygenOK ? heygenAuthHeaders() : null;
 
 // ── merge base: preserve sections not selected by --only ──────────────────────
-const prev = existsSync(outPath) ? JSON.parse(readFileSync(outPath, "utf8")) : {};
+const audioMeta = openAudioMeta(outPath);
+const prev = audioMeta.value;
 const anomalies = [];
 
 // ── TTS ───────────────────────────────────────────────────────────────────────
@@ -151,6 +152,8 @@ if (only.has("tts") && lines.length) {
       voiceId,
       lang,
       speed,
+      model: flag("tts-model", request.tts_model),
+      style: flag("style", line.style ?? request.style),
       wavAbs: abs,
       hyperframesDir,
     });
@@ -208,7 +211,12 @@ if (only.has("bgm")) {
     console.error(`· bgm: disabled`);
   } else if (mode === "retrieve") {
     try {
-      bgm = await retrieveBgm({ query: request.bgm?.query, headers, hyperframesDir, hasVoice });
+      bgm = await retrieveBgm({
+        query: request.bgm?.query,
+        headers: heygenAuthHeaders(),
+        hyperframesDir,
+        hasVoice,
+      });
       if (bgm) {
         bgmFields.bgm_provider = "heygen";
         bgmFields.bgm_mode = "retrieve";
@@ -260,6 +268,7 @@ if (only.has("sfx")) {
       .map((name) => ({ id: String(l.id), name: String(name).trim() }))
       .filter((c) => c.name),
   );
+  const headers = heygenOK && cues.length ? heygenAuthHeaders() : null;
   const res = await resolveSfx({ cues, heygenOK, headers, hyperframesDir, sfxLibDir });
   sfx = res.sfx;
   anomalies.push(...res.anomalies);
@@ -279,7 +288,7 @@ const meta = {
   total_duration_s: totalDuration,
 };
 mkdirSync(dirname(outPath), { recursive: true });
-writeFileSync(outPath, JSON.stringify(meta, null, 2));
+audioMeta.write(meta);
 
 console.log(`✓ audio engine → ${outPath}`);
 console.log(`  heygen: ${heygenOK ? "yes" : "no"}  ·  ran: ${[...only].join(",")}`);
