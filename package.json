@@ -1,7 +1,7 @@
 {
   "name": "dsh-hyperframes",
   "version": "0.4.2",
-  "description": "DSH 视频创作技能插件：注册 HyperFrames by HeyGen 官方 21 个技能（HTML 即视频：动画/音频/关键帧/字幕/幻灯片/口播重剪/多路转视频/CLI/Studio），安装即用。",
+  "description": "把 HyperFrames 的 HTML 视频创作技能接入 DSH。",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -18,7 +18,9 @@
     "skills",
     "cordis.patch.yml",
     "README.md",
-    "README.en.md"
+    "README.en.md",
+    "docs",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
