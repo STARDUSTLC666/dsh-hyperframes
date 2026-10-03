@@ -18,6 +18,22 @@ dsh plugin --profile web remove dsh-hyperframes
 
 Then restart the web service. To clean up fully, also remove the plugin entry from your profile `cordis.patch.yml` if you overrode it.
 
+## Video workbench
+
+Open Settings → HyperFrames in DSH Web or Desktop.
+
+1. Create a video. Select title card, product card or slideshow; set the title/body, canvas and an integer duration of 3–30 seconds, then save.
+2. Upload local copies of PNG/JPEG images, one MP3/WAV background audio and one muted MP4 background video. Limits: 20 MB per asset, 40 MB total. Slideshows follow upload order and need at least two seconds per image.
+3. Explicitly prepare the environment on first use. It downloads official CLI 0.8.114; Windows uses its managed rendering browser, while other platforms reuse installed Chrome when available. Project editing remains available. FFmpeg must be installed and in PATH; restart DSH after changing PATH.
+4. Start official Studio and inspect the picture. Stop this preview before editing or exporting. No window is opened automatically.
+5. Export, play and download MP4. Later edits preserve earlier MP4s and display a revision warning. Export again for a new final output.
+
+The editable ZIP includes source, data and media. Extract it, run npm install, then npm run preview / render as explained by its README. Original template code is MIT; engines retain their own licenses. ZIP import is not yet available in settings.
+
+Projects and caches stay in DSH_HOME/data/dsh-hyperframes; Web and Desktop profiles sharing the same DSH_HOME share saved projects; original assets and existing user projects are untouched. Closing settings preserves staged input within this page. Saved projects survive restart, but active jobs stop with DSH. Jobs can be cancelled. Tools: hyperframes_project (list/create/get/update), hyperframes_render (prepare/preview/render/job/cancel). Updates and rendering require id/revision; job/cancel require job id.
+
+The workbench supports template edits rather than a full timeline, transcription, TTS or cloud rendering. Default: 24 FPS and 200 MB maximum MP4. Official preview listens on 127.0.0.1 only; other users on the same machine may still reach this local service.
+
 ## Skills
 
 | Skill | Purpose |
