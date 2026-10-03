@@ -2,6 +2,8 @@
 
 [English](README.en.md)
 
+![dsh-hyperframes 鲸鱼娘插件封面](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/assets/cover-whale-girl.png)
+
 把 HyperFrames 的 HTML 视频创作技能接入 DSH。
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://img.shields.io/npm/dm/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes)

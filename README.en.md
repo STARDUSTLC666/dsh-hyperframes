@@ -2,6 +2,8 @@
 
 [中文](README.md)
 
+![dsh-hyperframes whale girl plugin cover](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/assets/cover-whale-girl.png)
+
 Bring HyperFrames HTML video creation skills into DSH.
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://img.shields.io/npm/dm/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes)
