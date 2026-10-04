@@ -6,7 +6,7 @@
 
 把 HyperFrames 的 HTML 视频创作技能接入 DSH。
 
-[![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://img.shields.io/npm/dm/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes)
+[![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
 ## 功能
 
