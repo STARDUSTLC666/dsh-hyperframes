@@ -2,6 +2,10 @@
 
 [Overview](../README.en.md) · [Changelog](../CHANGELOG.md) · [Validation](VALIDATION.md)
 
+## Current improvements
+
+Save, choose Archive this project and confirm. Restore from Archived projects. Resolve unsaved edits and stop preview/render jobs first. Archives retain files and disk usage; they free active list slots rather than disk space.
+
 ## Installation
 
 ```bash
