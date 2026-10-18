@@ -14,6 +14,24 @@ dsh plugin --profile web add dsh-hyperframes
 
 After restarting, say "turn this website into a HyperFrames video" to trigger it.
 
+### Marketplace error `spawn … ENOENT`
+
+The `spawn … DSH Desktop.exe ENOENT` reported in [#2](https://github.com/STARDUSTLC666/dsh-hyperframes/issues/2) occurs while the installer launches the host CLI. A missing executable and a missing child working directory can both produce this error; that line alone does not distinguish them.
+
+Hub 1.6.5 uses the target profile directory as the working directory even when it does not exist. [Hub 1.6.12](https://github.com/dshplugin/dsh-plugin-hub/blob/v1.6.12/src/server/services/install/task-queue.ts) adds a directory fallback and a separate host launch failure hint. See the matching upstream report, [Hub #212](https://github.com/dshplugin/dsh-plugin-hub/issues/212).
+
+1. Fully exit DSH, including the tray application, then launch it from its actual installation location. Repair or reinstall Desktop if it was moved or executable files are missing after an update; retain your existing user data.
+2. Update Plugin Hub to **1.6.12 or newer**, preferably through the Plugins panel. Alternatively, run the following in DSH's built-in terminal. This example preserves the `web` profile from #2; manage a `desktop` profile through Desktop's own terminal or Plugins panel.
+
+   ```bash
+   dsh plugin --profile web add dsh-plugin@latest
+   dsh plugin --profile web add dsh-hyperframes
+   ```
+
+3. Restart DSH and check Settings → HyperFrames. Use the same `DSH_HOME`; a regular terminal's default `~/.dsh` may differ from Desktop's user directory. Compare it with `DSH Home` in the Hub report.
+
+The published npm package is **`dsh-hyperframes`**; `@stardustlc/dsh-hyperframes` is not published. Installing through `dsh plugin` also registers the plugin bundle, which a plain `pnpm add` does not replace. If it still fails, include the current Hub version, full `hub.log` and the command actually executed.
+
 ## Uninstall
 
 ```bash

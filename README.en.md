@@ -30,6 +30,8 @@ dsh plugin --profile desktop add dsh-hyperframes
 
 For the web version, replace `desktop` with `web`. Restart DSH after installation.
 
+For a marketplace `spawn … ENOENT` error, follow the [installation troubleshooting](docs/USAGE.en.md#marketplace-error-spawn--enoent). The npm package name is `dsh-hyperframes`.
+
 ## Start using it
 
 Open Settings → HyperFrames → New video. Save your content, then upload media. Prepare the render environment on first use, inspect the official Studio preview, stop it and export MP4.

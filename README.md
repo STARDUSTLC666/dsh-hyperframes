@@ -30,6 +30,8 @@ dsh plugin --profile desktop add dsh-hyperframes
 
 网页版把命令中的 `desktop` 改为 `web`。安装后重启 DSH。
 
+插件市场出现 `spawn … ENOENT` 时，按[安装排错](docs/USAGE.md#插件市场报-spawn--enoent)处理。npm 包名是 `dsh-hyperframes`。
+
 ## 开始使用
 
 打开「设置 → HyperFrames」→「新建视频」，填写内容并保存，再上传素材。首次点击「准备渲染环境」下载依赖，完成后启动官方预览，检查画面、停止预览，再导出 MP4。

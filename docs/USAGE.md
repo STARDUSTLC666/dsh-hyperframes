@@ -14,6 +14,24 @@ dsh plugin --profile web add dsh-hyperframes
 
 重启后说「把这个网址做成 HyperFrames 视频」即可触发。
 
+### 插件市场报 `spawn … ENOENT`
+
+[#2](https://github.com/STARDUSTLC666/dsh-hyperframes/issues/2) 报告的 `spawn … DSH Desktop.exe ENOENT` 发生在安装器启动宿主 CLI 时。可执行文件不存在、子进程工作目录不存在都可能产生这个错误；仅凭这一行无法区分。
+
+Hub 1.6.5 在目标 profile 目录尚未创建时仍把它用作工作目录。[Hub 1.6.12](https://github.com/dshplugin/dsh-plugin-hub/blob/v1.6.12/src/server/services/install/task-queue.ts) 已增加目录回退，并为宿主启动失败提供单独提示。上游的同类报告见 [Hub #212](https://github.com/dshplugin/dsh-plugin-hub/issues/212)。
+
+1. 完全退出 DSH（包括托盘），从实际安装位置重新打开。若程序已被移动、升级后文件缺失，先修复或重新安装 Desktop，保留原有用户资料。
+2. 将 Plugin Hub 更新到 **1.6.12 或更新版本**。优先使用插件面板的更新功能；也可在 DSH 内置终端执行下面的命令。下例沿用 #2 的 `web` profile，桌面 profile 应使用 `desktop`，并通过 Desktop 自带的终端或插件面板管理。
+
+   ```bash
+   dsh plugin --profile web add dsh-plugin@latest
+   dsh plugin --profile web add dsh-hyperframes
+   ```
+
+3. 重启 DSH 后检查「设置 → HyperFrames」。命令必须使用同一个 `DSH_HOME`；普通终端默认的 `~/.dsh` 可能与 Desktop 使用的用户目录不同，可对照 Hub 报告中的 `DSH Home`。
+
+npm 包名是 **`dsh-hyperframes`**，`@stardustlc/dsh-hyperframes` 未发布。使用 `dsh plugin` 安装会同时登记插件 bundle，单独 `pnpm add` 不能代替这一步。若仍失败，请附上当前 Hub 版本、完整 `hub.log` 和实际执行的命令。
+
 ## 卸载
 
 ```bash
