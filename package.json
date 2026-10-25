@@ -1,6 +1,6 @@
 {
   "name": "dsh-hyperframes",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "DSH 视频插件：HyperFrames 技能、模板与素材工作台、官方预览和本地 MP4 导出。",
   "type": "module",
   "main": "lib/index.js",
@@ -36,7 +36,9 @@
     },
     "client": {
       "inject": [
-        "@deepseek-ai/dsh-client-ui-settings"
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
       ],
       "platform": "web"
     }
