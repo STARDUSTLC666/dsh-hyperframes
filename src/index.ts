@@ -1,3 +1,4 @@
+import { registerUpdates } from '@stardustlc/dsh-updates'
 /**
  * dsh-hyperframes: packaged video skills with disk and registry health checks.
  * The portable implementation lives in skill-bundle.ts; this entry only
@@ -56,4 +57,6 @@ const bundle = createSkillBundle({
 export function checkBundledSkills() { return bundle.checkFiles() }
 
 /** Register this package's skills and its read-only health tool. */
-export function apply(ctx: SkillsPluginContext): void { bundle.apply(ctx); installMediaWorkbench(ctx, 'hyperframes') }
+export function apply(ctx: SkillsPluginContext): void {
+  registerUpdates(ctx, { name: "dsh-hyperframes" })
+ bundle.apply(ctx); installMediaWorkbench(ctx, 'hyperframes') }
