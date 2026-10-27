@@ -1,6 +1,6 @@
 {
   "name": "dsh-hyperframes",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "DSH 视频插件：HyperFrames 技能、模板与素材工作台、官方预览和本地 MP4 导出。",
   "type": "module",
   "main": "lib/index.js",
@@ -60,7 +60,7 @@
     "fflate": "0.8.3",
     "proper-lockfile": "4.1.2",
     "yaml": "^2.9.0",
-    "@stardustlc/dsh-updates": "0.1.0"
+    "@stardustlc/dsh-updates": "0.1.1"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
