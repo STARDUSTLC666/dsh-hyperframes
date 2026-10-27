@@ -98,7 +98,10 @@ function run() {
       // with priming silence (~25-35ms for AAC), which concat then bakes in as a
       // gap at each cut -- a defect distinct from, and surviving, the fades
       // below. PCM has no priming, so audio is encoded exactly once, at concat.
-      const ext = args.copy ? extname(outPath) || ".mp4" : isAudioOnly(outPath) ? ".wav" : ".mkv";
+      // The video container is .mov, not .mkv: ffmpeg writes Matroska
+      // timestamps in whole milliseconds, which moves frames off the source's
+      // frame grid, and the concat copy below carries that into the output.
+      const ext = args.copy ? extname(outPath) || ".mp4" : isAudioOnly(outPath) ? ".wav" : ".mov";
       const out = join(tmpDir, `segment-${String(index).padStart(4, "0")}${ext}`);
       // --copy stays fade-free (stream copy cannot filter). A segment's true
       // start/end (index 0's start, the last segment's end) borders nothing
@@ -183,20 +186,27 @@ function cutSegment(inputPath, segment, outPath, copy, fade) {
     "-y",
     "-nostdin",
     "-ss",
-    fmt(segment.start),
+    seekTime(segment.start),
     "-i",
     inputPath,
     "-to",
-    fmt(segment.end - segment.start),
+    seekTime(segment.end - segment.start),
   ];
   if (copy) {
     argv.push("-c", "copy", "-avoid_negative_ts", "make_zero");
-  } else if (extname(outPath).toLowerCase() === ".mkv") {
+  } else if (extname(outPath).toLowerCase() === ".mov") {
     // Concat splices raw segment edges together; without a short ramp the
     // waveform steps discontinuously at every boundary and you hear a click.
     if (fade) argv.push("-af", fade);
     // Video intermediate: keep the picture cheap and the audio uncompressed.
     argv.push("-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-c:a", "pcm_s16le");
+    // A keyframe every second. The renderer seeks into this footage, and x264
+    // on its own leaves up to 250 frames between keyframes.
+    argv.push("-force_key_frames", "expr:gte(t,n_forced)");
+    // Constant frame rate from the first frame. Left to itself, ffmpeg 7 starts
+    // a range that begins between two source frames one frame late, and .mov
+    // rounds that lead-in to the millisecond.
+    argv.push("-fps_mode", "cfr");
   } else {
     if (fade) argv.push("-af", fade);
     argv.push("-c:a", "pcm_s16le");
@@ -263,6 +273,15 @@ function fmt(n) {
   return round3(n)
     .toFixed(3)
     .replace(/\.?0+$/, "");
+}
+
+// -ss/-to name frames, and ffmpeg's accurate seek drops everything before the
+// time it is given: at 30 fps, frame 386 sits at 12.866666 s, and a 3-decimal
+// -ss of 12.867 starts that segment on frame 387 instead, leaving the cut a
+// frame short from the join on. So the values ffmpeg gets keep frame precision,
+// while fmt() above stays at 3 decimals for the times that are only printed.
+function seekTime(n) {
+  return Number(n).toFixed(6);
 }
 
 function round3(n) {

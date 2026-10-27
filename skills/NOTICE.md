@@ -1,0 +1,3 @@
+# Upstream notice
+
+The seven canonical HyperFrames skill directories are copied from the official hyperframes@0.8.207 release commit (Git 619b8bc4d7fee406246529a8e214e60424807eda). The three skills included in the npm CLI distribution were also compared against its verified tarball. Their Apache-2.0 license is preserved in UPSTREAM-LICENSE.txt. Fourteen retired DSH names are small compatibility adapters maintained by STARDUSTLC666; they load the current official skills instead of carrying obsolete workflow bodies. plugin.json supplies the upstream launcher's exact CLI release. The DSH adapter code remains under the repository MIT license.

@@ -46,7 +46,7 @@ dsh plugin --profile web remove dsh-hyperframes
 
 1. 新建视频，选择标题卡、产品介绍或图文轮播，填写标题/正文、画幅和 3–30 秒时长，明确保存。
 2. 上传 PNG/JPEG、一个背景音频（MP3/WAV）、一个静音背景视频（MP4）的副本。每个文件最多 20 MB、总计 40 MB；轮播按上传顺序，每张至少两秒。
-3. 首次点击「准备渲染环境」。此时下载固定版本官方 CLI 0.8.114；Windows 下载官方专用渲染浏览器，其他系统优先复用已安装的 Chrome；可以继续编辑工程。下载失败保留工程，查看运行记录后重试。需先安装 FFmpeg 并加入 PATH，重启 DSH 后生效。
+3. 首次点击「准备渲染环境」。此时下载固定版本官方 CLI 0.8.207；Windows 下载官方专用渲染浏览器，其他系统优先复用已安装的 Chrome；可以继续编辑工程。下载失败保留工程，查看运行记录后重试。需先安装 FFmpeg 并加入 PATH，重启 DSH 后生效。
 4. 启动官方 Studio，检查画面。停止本次预览后再编辑或导出；不会自动打开或占用前台窗口。
 5. 导出 MP4、在工作台播放并下载。工程更新后保留旧成品并显示旧修订提醒；再次导出即可生成新成片。
 
@@ -92,7 +92,7 @@ Node.js 22.19+ (22.x) / 24+ + FFmpeg（`npx hyperframes`）。
 
 ## 移植说明
 
-技能同步自官方仓库 `heygen-com/hyperframes` v0.8.82（2026-09-28）：官方打包的完整 `skills/` 目录，共 21 个技能。相较 v0.8.20，新增 `hyperframes-studio`（Studio 时间轴规范），`hyperframes-core` 的 brief/storyboard/script 等文档改由 `hyperframes` 技能承载，`media-use` 与 `music-to-video` 大幅重构（新增内置动态原语），`embedded-captions` 等脚本随官方升级。旧版五件套中的 `gsap`、`website-to-hyperframes` 已被上游合并进新技能体系。
+技能同步自官方 `heygen-com/hyperframes` 的 0.8.207 发布提交 `619b8bc4d7fee406246529a8e214e60424807eda`（2026-10-27）。当前 7 个官方技能完整保留原文、脚本与资源；原来的 14 个旧名称改为兼容入口，转向当前技能，避免继续使用已合并的旧工作流。上游插件启动器固定 CLI 版本，并禁止独立技能更新命令覆盖 DSH 管理的包。来源、完整性与 Apache-2.0 许可证见 `skills/UPSTREAM.json` 和 `skills/UPSTREAM-LICENSE.txt`。
 
 ## 跨平台使用
 

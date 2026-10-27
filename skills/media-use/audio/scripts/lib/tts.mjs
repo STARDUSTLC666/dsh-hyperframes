@@ -18,7 +18,7 @@ import { spawn, spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { heygenAuthHeaders, heygenCredential, heygenJSON } from "./heygen.mjs";
+import { heygenAuthHeaders, heygenCredential, heygenJSON, heygenMessage } from "./heygen.mjs";
 import { pythonInvocation } from "./python.mjs";
 import { synthesizeGemini } from "./gemini-tts.mjs";
 import { geminiConfigured } from "./gemini-auth.mjs";
@@ -45,10 +45,8 @@ export function pickProvider(userProvider) {
       throw new Error(
         "provider=gemini needs GEMINI_API_KEY or GOOGLE_API_KEY, or service-account credentials (GOOGLE_APPLICATION_CREDENTIALS or GCS_CREDS)",
       );
-    if (userProvider === "heygen" && !heygenAvailable())
-      throw new Error(
-        "provider=heygen but no HeyGen credentials (set $HEYGEN_API_KEY or run `npx hyperframes auth login`)",
-      );
+    // heygenAuthHeaders owns the reason and its fix: no credential, or a credentials path that cannot be read.
+    if (userProvider === "heygen" && !heygenAvailable()) heygenAuthHeaders();
     if (userProvider === "elevenlabs" && !process.env.ELEVENLABS_API_KEY)
       throw new Error("provider=elevenlabs but $ELEVENLABS_API_KEY is not set");
     return userProvider;
@@ -236,7 +234,7 @@ import os, sys
 from elevenlabs.client import ElevenLabs
 from elevenlabs import save
 client = ElevenLabs(api_key=os.environ["ELEVENLABS_API_KEY"])
-text = open(sys.argv[1]).read()
+text = open(sys.argv[1], encoding="utf-8").read()
 audio = client.text_to_speech.convert(
     text=text, voice_id=sys.argv[2],
     model_id="eleven_multilingual_v2", output_format="mp3_44100_128",
@@ -276,22 +274,21 @@ export async function synthesizeOne({
     } catch {
       return { ok: false, words: null };
     }
-    const { cmd, args } = pythonInvocation([
-      "-c",
-      ELEVENLABS_PY,
-      writeTmpText(text),
-      voiceId,
-      wavAbs,
-    ]);
-    const r = await spawnP(cmd, args, {});
-    return synthResult(r, wavAbs, "elevenlabs (python)");
+    return withTmpText(text, async (textPath) => {
+      const { cmd, args } = pythonInvocation(["-c", ELEVENLABS_PY, textPath, voiceId, wavAbs]);
+      const r = await spawnP(cmd, args, {});
+      return synthResult(r, wavAbs, "elevenlabs (python)");
+    });
   }
   // kokoro — via the published CLI; --output is relative to the project dir.
   const wavRel = relTo(hyperframesDir, wavAbs);
-  const args = ["hyperframes", "tts", writeTmpText(text), "--voice", voiceId, "--output", wavRel];
-  if (lang !== "en") args.push("--lang", lang);
-  const r = await spawnP("npx", args, { cwd: hyperframesDir });
-  return synthResult(r, wavAbs, "kokoro (npx hyperframes tts)");
+  return withTmpText(text, async (textPath) => {
+    const args = ["hyperframes", "tts", textPath, "--voice", voiceId, "--output", wavRel];
+    if (lang !== "en") args.push("--lang", lang);
+    if (speed !== 1) args.push("--speed", String(speed));
+    const r = await spawnP("npx", args, { cwd: hyperframesDir });
+    return synthResult(r, wavAbs, "kokoro (npx hyperframes tts)");
+  });
 }
 
 // Shape a spawn result into { ok, words, error }, naming why on failure so the
@@ -351,7 +348,7 @@ export async function synthesizeHeygen({ text, voiceId, lang, speed, wavAbs }, d
       : [];
     return { ok: true, words };
   } catch (e) {
-    return { ok: false, words: null, error: e?.message ? String(e.message) : String(e) };
+    return { ok: false, words: null, error: heygenMessage(e) };
   }
 }
 
@@ -379,11 +376,18 @@ export async function transcribeWav({ wavRel, lang = "en", hyperframesDir }) {
 }
 
 // ── tiny local utils ──────────────────────────────────────────────────────────
-function writeTmpText(text) {
+async function withTmpText(text, run) {
   const td = mkdtempSync(join(tmpdir(), "hf-txt-"));
-  const p = join(td, "line.txt");
-  writeFileSync(p, text);
-  return p;
+  try {
+    const p = join(td, "line.txt");
+    writeFileSync(p, text);
+    return await run(p);
+  } finally {
+    // Cleanup must preserve the synthesis result or the original write/spawn error.
+    try {
+      rmSync(td, { recursive: true, force: true });
+    } catch {}
+  }
 }
 function relTo(base, abs) {
   return abs.startsWith(base + "/") ? abs.slice(base.length + 1) : abs;

@@ -38,7 +38,7 @@ export const SKILL_NAMES = [
   "product-launch-video",
   "remotion-to-hyperframes",
   "slideshow",
-  "talking-head-recut",
+  "talking-head-recut"
 ] as const
 
 /** Absolute resource root shipped in this independently installable package. */

@@ -32,7 +32,7 @@ Remotion accepts a function for `volume`:
 ```
 
 HF ramps volume with a `data-automation` volume lane on the `<audio>`
-(form in `hyperframes-core/references/creator-editing-recipes.md`).
+(form in `/media-use` → `references/mixing.md`).
 Translation: write the lane from the `interpolate` points, OR bake the ramp
 into the audio file with `ffmpeg afade`. The dropped-ramp path produces audibly different
 output but visually-identical video, so SSIM passes — just flag it.
@@ -48,7 +48,7 @@ output but visually-identical video, so SSIM passes — just flag it.
 A bounded GSAP repeat can reproduce _visual_ repetition when its finite count is derived
 from the visible duration. If the looped child has cross-iteration state (a counter, a
 randomness seed), HF won't reproduce it identically per iteration. Bow out unless the child
-is fully deterministic per-iteration; never use `repeat: -1`.
+is fully deterministic per-iteration; use `repeat: -1` only when the root declares a finite `data-duration`.
 
 ### Remotion's `<Img>` with crossOrigin
 
@@ -122,7 +122,7 @@ a `TRANSLATION_NOTES.md` next to the output:
 The following Remotion patterns were translated with caveats:
 
 - `<Audio volume={(f) => ...}>` (line 15): volume ramp written as a
-  `data-automation` volume lane (see `creator-editing-recipes.md`); the
+  `data-automation` volume lane (see the media-use skill's mixing reference); the
   ffmpeg `afade` bake-in is the alternative.
 - `<HeavyChart>` (line 30): translated as inline HTML. The original
   React.lazy boundary was dropped — bundle size unchanged because HF
