@@ -1,5 +1,9 @@
 # dsh-hyperframes 验证记录
 
+## 2026-10-28：0.10.1
+
+[本次修复与验收边界](validation-0.10.1.md)。
+
 [0.5.1 中英文界面验收](validation-language-2026-10-03.md)。
 
 [Windows 安装排错与真实安装验收（2026-10-18）](validation-install-2026-10-18.md)。
