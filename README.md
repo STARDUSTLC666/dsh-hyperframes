@@ -4,15 +4,15 @@
 
 ![dsh-hyperframes 鲸鱼娘插件封面](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/assets/cover-whale-girl.png)
 
-把 HyperFrames 的 HTML 视频创作技能接入 DSH。
+在 DSH 中用 HTML 创作视频：官方 HyperFrames 技能、模板工程、素材上传与排序、归档、官方预览和本地 MP4 导出。既可让 AI 编写视频工程，也可直接使用工作台模板。
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
 欢迎使用，遇到问题或有改进建议，请提交 [issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues) 和 [PR](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls)。
 
-更新并重启 DSH 后，可从原生侧栏打开新版工作台，原设置入口继续保留。详见[工作台说明与验收范围](docs/WORKBENCH.md)。
+从 DSH 原生侧栏打开工作台；配置与操作边界见[工作台说明](docs/WORKBENCH.md)。
 
-技能内容：官方 HyperFrames 0.8.209，7 个当前技能；14 个旧名称保留为兼容入口。
+技能内容：官方 HyperFrames 0.8.211，7 个当前技能；14 个旧名称保留为兼容入口。
 
 在「素材」页上移或下移图片即可调整轮播顺序，支持键盘操作。顺序立即保存；重新导出后应用于新 MP4。
 
