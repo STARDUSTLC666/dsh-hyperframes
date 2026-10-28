@@ -1,7 +1,12 @@
-#- 同步官方 HyperFrames 0.8.207 的 7 个当前技能，14 个旧名称保留为兼容入口；固定 CLI、禁止技能任务绕过 DSH 更新已安装包。
- 更新记录
+# 更新记录
 
 [返回简介](README.md) · [使用说明](docs/USAGE.md) · [验证记录](docs/VALIDATION.md)
+
+## 0.10.0 (2026-10-28)
+
+- 素材页支持上移/下移图片，显示播放序号，立即保存并校验工程修订；不改音频/视频位置和旧成品。
+- Add keyboard-accessible image ordering without re-uploading. Existing renders remain available; export again to apply the new order.
+- 同步官方 HyperFrames 0.8.209 的当前技能、资源和固定 CLI；记录上游提交与校验值。技能文本固定 LF，避免 Windows 检出换行转换导致完整性检查失败。
 
 ## 0.9.3 (2026-10-27)
 

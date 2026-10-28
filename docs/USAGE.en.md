@@ -46,7 +46,7 @@ Open Settings → HyperFrames in DSH Web or Desktop.
 
 1. Create a video. Select title card, product card or slideshow; set the title/body, canvas and an integer duration of 3–30 seconds, then save.
 2. Upload local copies of PNG/JPEG images, one MP3/WAV background audio and one muted MP4 background video. Limits: 20 MB per asset, 40 MB total. Slideshows follow upload order and need at least two seconds per image.
-3. Explicitly prepare the environment on first use. It downloads official CLI 0.8.207; Windows uses its managed rendering browser, while other platforms reuse installed Chrome when available. Project editing remains available. FFmpeg must be installed and in PATH; restart DSH after changing PATH.
+3. Explicitly prepare the environment on first use. It downloads official CLI 0.8.209; Windows uses its managed rendering browser, while other platforms reuse installed Chrome when available. Project editing remains available. FFmpeg must be installed and in PATH; restart DSH after changing PATH.
 4. Start official Studio and inspect the picture. Stop this preview before editing or exporting. No window is opened automatically.
 5. Export, play and download MP4. Later edits preserve earlier MP4s and display a revision warning. Export again for a new final output.
 
@@ -88,7 +88,7 @@ Node.js 22.19+ (22.x) / 24+ + FFmpeg (`npx hyperframes`).
 
 ## Porting notes
 
-Synced from official HyperFrames 0.8.207 release commit `619b8bc4d7fee406246529a8e214e60424807eda` (2026-10-27). All seven current official skills retain their upstream files. Fourteen previous names remain as compatibility entries that load current workflows. The upstream plugin launcher pins the CLI and blocks standalone skill replacement. Source hashes and the Apache-2.0 license are recorded under `skills/UPSTREAM.json` and `skills/UPSTREAM-LICENSE.txt`.
+Synced from official HyperFrames 0.8.209 release commit `53c975966611e7012b09b6d46707c26511ea077d` (2026-10-28). All seven current official skills retain their upstream files. Fourteen previous names remain as compatibility entries that load current workflows. The upstream plugin launcher pins the CLI and blocks standalone skill replacement. Source hashes and the Apache-2.0 license are recorded under `skills/UPSTREAM.json` and `skills/UPSTREAM-LICENSE.txt`.
 
 ## Multi-harness
 
