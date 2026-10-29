@@ -6,7 +6,9 @@
 
 Create HTML videos in DSH with official HyperFrames skills, template projects, asset upload and ordering, archives, official preview and local MP4 export. Use AI-authored projects or start directly from a workbench template.
 
-[![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
+[![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
+
+[Download statistics](https://github.com/STARDUSTLC666/dsh-suite/blob/npm-downloads/README.md)
 
 Feedback and contributions are welcome: report [issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues) or submit [pull requests](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls).
 
@@ -41,9 +43,11 @@ For a marketplace `spawn … ENOENT` error, follow the [installation troubleshoo
 
 ## Start using it
 
-Open Settings → HyperFrames → New video. Save your content, then upload media. Prepare the render environment on first use, inspect the official Studio preview, stop it and export MP4.
-
-Ask: “Make a short video from this material with HyperFrames, preview it, then render MP4.” The assistant follows the skills to create a project and run the renderer.
+1. Open HyperFrames in the sidebar, choose New video, select a template and enter content.
+2. Save the project before uploading media; reorder it in Media while preserving original files.
+3. Prepare the renderer in Environment on first use and wait for it to finish.
+4. Start the preview, inspect it, then stop it before editing or exporting MP4.
+5. Play and download the result and keep an editable backup. Search or sort the library later, or restore an archive.
 
 ## Requirements and configuration
 

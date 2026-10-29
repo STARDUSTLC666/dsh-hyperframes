@@ -6,7 +6,9 @@
 
 在 DSH 中用 HTML 创作视频：官方 HyperFrames 技能、模板工程、素材上传与排序、归档、官方预览和本地 MP4 导出。既可让 AI 编写视频工程，也可直接使用工作台模板。
 
-[![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
+[![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
+
+[下载统计说明](https://github.com/STARDUSTLC666/dsh-suite/blob/npm-downloads/README.md)
 
 欢迎使用，遇到问题或有改进建议，请提交 [issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues) 和 [PR](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls)。
 
@@ -41,9 +43,11 @@ dsh plugin --profile desktop add dsh-hyperframes
 
 ## 开始使用
 
-打开「设置 → HyperFrames」→「新建视频」，填写内容并保存，再上传素材。首次点击「准备渲染环境」下载依赖，完成后启动官方预览，检查画面、停止预览，再导出 MP4。
-
-可说：“用 HyperFrames 把这份材料做成短视频，先预览，再渲染 MP4。”助手会按技能指引建立项目和调用渲染工具。
+1. 从左侧栏打开 HyperFrames，点击“新建视频”，选模板并填写内容。
+2. 先保存工程，再上传素材；在“素材”页调整顺序，原始文件保持不变。
+3. 首次使用在“环境”页准备渲染环境，等待实际准备完成。
+4. 启动预览并检查画面，停止预览后再编辑或导出 MP4。
+5. 播放并下载成品；保存可编辑工程备份。以后可在工程库搜索、排序，或从归档恢复。
 
 ## 依赖与配置
 

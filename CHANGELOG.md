@@ -2,6 +2,11 @@
 
 [返回简介](README.md) · [使用说明](docs/USAGE.md) · [验证记录](docs/VALIDATION.md)
 
+## 0.11.1 (2026-10-29)
+
+- 补齐中英文使用流程：准备、入口、具体操作与结果核对；新增累计 npm 下载徽章并保留月统计。
+- Add practical getting-started workflows and lifetime npm download badges alongside monthly counts.
+
 ## 0.11.0 (2026-10-29)
 
 - 同步官方 HyperFrames 0.8.214 技能、完整资源与渲染器；修正兼容技能入口和上游来源声明中的旧版本。
