@@ -1,5 +1,5 @@
 {
   "name": "hyperframes",
-  "version": "0.8.211",
+  "version": "0.8.214",
   "description": "Official HyperFrames skill release packaged by dsh-hyperframes. DSH manages this bundle; this manifest supplies the pinned upstream CLI version."
 }
