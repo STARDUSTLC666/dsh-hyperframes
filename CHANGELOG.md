@@ -2,6 +2,12 @@
 
 [返回简介](README.md) · [使用说明](docs/USAGE.md) · [验证记录](docs/VALIDATION.md)
 
+## 0.10.2 (2026-10-29)
+
+- 同步仓库与 npm 的简明介绍、中英文 README 和反馈入口；本次为文档与包元数据更新。
+- Sync npm descriptions and both README guides with the repository, including issue and pull-request links.
+- Correct the introductory engine reference to the already included HyperFrames 0.8.211.
+
 ## 0.10.1 (2026-10-28)
 
 - 同步官方 HyperFrames 0.8.211：7 个当前技能、301 项资源逐一比对发布提交；更新两处上游文档，并固定新的 CLI 与渲染环境版本。

@@ -1,7 +1,7 @@
 {
   "name": "dsh-hyperframes",
-  "version": "0.10.1",
-  "description": "DSH 视频插件：HyperFrames 技能、模板与素材工作台、官方预览和本地 MP4 导出。",
+  "version": "0.10.2",
+  "description": "DSH HTML 视频工作台：官方 HyperFrames 技能、模板、素材排序、预览与本地 MP4 导出。欢迎提交 issues 和 PR。",
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
