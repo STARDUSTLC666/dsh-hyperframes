@@ -1,45 +1,35 @@
-# dsh-hyperframes
+**简体中文** · [English](README.en.md)
 
-[English](README.en.md)
+# HyperFrames
 
-![dsh-hyperframes 鲸鱼娘插件封面](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/assets/cover-whale-girl.png)
-
-在 DSH 中用 HTML 创作视频：官方 HyperFrames 技能、模板工程、素材上传与排序、归档、官方预览和本地 MP4 导出。既可让 AI 编写视频工程，也可直接使用工作台模板。
+**在 DSH 里用 HTML 创作并导出视频。**
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
-[下载统计说明](https://github.com/STARDUSTLC666/dsh-suite/blob/npm-downloads/README.md)
+**[安装使用](#安装) · [使用流程](#开始使用) · [完整说明](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.zh.md)**
 
-欢迎使用，遇到问题或有改进建议，请提交 [issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues) 和 [PR](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls)。
-
-从 DSH 原生侧栏打开工作台；配置与操作边界见[工作台说明](docs/WORKBENCH.md)。
-
-技能内容：官方 HyperFrames 0.8.214，7 个当前技能；14 个旧名称保留为兼容入口。
-
-在「素材」页上移或下移图片即可调整轮播顺序，支持键盘操作。顺序立即保存；重新导出后应用于新 MP4。
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-zh-mobile-dark.svg">
+  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-zh-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-zh-dark.svg">
+  <img src="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-zh-light.svg" alt="在 DSH 里用 HTML 创作并导出视频。 · 流程示意" width="100%">
+</picture>
 
 ## 功能
 
-- 工程库按关键词搜索，按最近 / 最早更新或标题排序；返回列表时保留筛选条件。
-- 设置页视频工作台：选模板、编辑内容、上传素材，在官方 Studio 预览并导出本机 MP4。
-- 提供标题卡、产品介绍、图文轮播；支持横屏、竖屏和正方形。
-- 保留可编辑工程备份、渲染记录与取消操作；工程修改后提醒重新导出。
-
-- 提供动画、音频、字幕、关键帧和时间轴工作流。
-- 支持幻灯片、产品发布、音乐驱动等创作场景。
-- 保留官方 CLI / Studio 指引与技能自检。
+- 从标题卡、产品介绍和图文轮播模板开始。
+- 编辑内容、上传素材并调整图片顺序。
+- 使用官方预览与本机渲染，保留可编辑工程。
 
 ## 安装
 
-桌面版可在「插件」面板按包名 `dsh-hyperframes` 安装。已配置 dsh 命令时也可使用：
+在 DSH 桌面版「插件」面板安装 `dsh-hyperframes`。已配置命令行时也可使用：
 
 ```bash
 dsh plugin --profile desktop add dsh-hyperframes
 ```
 
-网页版把命令中的 `desktop` 改为 `web`。安装后重启 DSH。
-
-插件市场出现 `spawn … ENOENT` 时，按[安装排错](docs/USAGE.md#插件市场报-spawn--enoent)处理。npm 包名是 `dsh-hyperframes`。
+网页版把 `desktop` 改为 `web`；安装后重启对应的 DSH。宿主要求以包声明 `>=0.2.1-rc.3` 为准。
 
 ## 开始使用
 
@@ -49,25 +39,32 @@ dsh plugin --profile desktop add dsh-hyperframes
 4. 启动预览并检查画面，停止预览后再编辑或导出 MP4。
 5. 播放并下载成品；保存可编辑工程备份。以后可在工程库搜索、排序，或从归档恢复。
 
-## 依赖与配置
+可以这样说：
 
-插件保留上游技能，并新增本地视频工作台。首次使用需 Node.js 22.19+ / 24+ 与 npm；还需 PATH 中可用的 FFmpeg。不会在 DSH 启动时自动下载依赖。
+> 制作一个 HTML 产品介绍视频，先确认文案与结构，再预览和导出 MP4。
 
-详细配置、工具参数与排错见[使用说明](docs/USAGE.md)。从源码独立开发时，Node 要求以 [package.json](package.json) 为准。
+## 开始前要知道
 
-## 文档
+首次使用需准备官方渲染环境；工程修改后需要重新导出。
 
-- [使用与排错](docs/USAGE.md)
-- [更新记录](CHANGELOG.md)
-- [验证范围与历史记录](docs/VALIDATION.md)
-- [问题反馈与功能建议](https://github.com/STARDUSTLC666/dsh-hyperframes/issues)
+配置、完整工具与排错见[详细使用说明](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.zh.md)。
 
 ## 插件更新
 
-需要 DSH 0.2.1-rc.3 或更新版本。更新控件直接位于原有工作台内容末尾；没有工作台的插件，位于原生插件详情页底部。检查、更新记录和偏好在原地展开，不增加独立更新页面或设置菜单。自动检查默认开启；**自动安装默认关闭**，明确授权后才会在空闲且没有未保存修改时安装兼容的稳定补丁。开关按插件独立保存，可关闭、推迟或忽略提醒；不会强制重启 DSH、升级 DSH 本体或替换本地源码安装。Suite 组件在当前页面底部明确说明并操作 Suite 整包更新。
+在工作台或原生插件详情页底部检查更新。默认自动检查，**默认不自动安装**；是否安装、何时重启由你决定。Suite 管理的组件随整包更新。[查看更新规则](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.zh.md)。
 
-旧版用户先在官方插件管理中手动更新一次，之后才会获得此入口。发布到 npm 不会直接替换用户已经安装的版本。
+## 文档
+
+- [详细使用、配置与边界](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.zh.md)
+- [更新记录](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/CHANGELOG.md)
+- [验证范围与历史](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/VALIDATION.md)
+
+## 反馈与贡献
+
+如果插件帮到了你，欢迎 Star，让更多人发现它。问题和建议请提交 [Issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues)，也欢迎代码与文档 [PR](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls)。反馈时附上版本与复现步骤，并移除凭据。
 
 ## License
 
-[MIT](LICENSE)。上游技能内容的来源和许可证见使用说明。
+[MIT](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/LICENSE)
+
+<a id="依赖与配置"></a>

@@ -1,45 +1,35 @@
-# dsh-hyperframes
+[简体中文](README.md) · **English**
 
-[中文](README.md)
+# HyperFrames
 
-![dsh-hyperframes whale girl plugin cover](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/assets/cover-whale-girl.png)
-
-Create HTML videos in DSH with official HyperFrames skills, template projects, asset upload and ordering, archives, official preview and local MP4 export. Use AI-authored projects or start directly from a workbench template.
+**Create and export HTML-based videos from DSH.**
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
-[Download statistics](https://github.com/STARDUSTLC666/dsh-suite/blob/npm-downloads/README.md)
+**[Install](#install) · [Workflow](#start-using-it) · [Full guide](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.en.md)**
 
-Feedback and contributions are welcome: report [issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues) or submit [pull requests](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls).
+<picture>
+  <source media="(prefers-color-scheme: dark) and (max-width: 640px)" srcset="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-en-mobile-dark.svg">
+  <source media="(max-width: 640px)" srcset="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-en-mobile-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-en-dark.svg">
+  <img src="https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/workflow-en-light.svg" alt="Create and export HTML-based videos from DSH. · workflow illustration" width="100%">
+</picture>
 
-Open the workbench from the native DSH sidebar. See the [workbench guide](docs/WORKBENCH.md) for configuration and operating boundaries.
+## Features
 
-Bundled skills: official HyperFrames 0.8.214, seven current skills with fourteen previous names retained as compatibility entries.
-
-Move images up or down in the Media tab, including with the keyboard. The order saves immediately; export again to apply it to a new MP4.
-
-## What it does
-
-- Search projects and sort by update time or natural title; keep filters when returning to the library.
-- A settings workbench for templates, editable content, media uploads, official Studio preview and local MP4 export.
-- Title card, product card and slideshow templates in landscape, portrait or square format.
-- Editable project backups, cancellable jobs and a warning when an MP4 uses an older revision.
-
-- Cover animation, audio, captions, keyframes and timeline workflows.
-- Create slideshows, launch videos, music-driven visuals and other formats.
-- Include upstream CLI and Studio guidance plus skill health checks.
+- Start from title, product or slideshow templates.
+- Edit content, upload media and reorder images.
+- Use the official preview and local renderer, keeping editable source.
 
 ## Install
 
-In DSH Desktop, install `dsh-hyperframes` from the Plugins panel. If the bundled dsh command is available:
+Open **Plugins** in the DSH desktop app and install `dsh-hyperframes`. If the CLI is available:
 
 ```bash
 dsh plugin --profile desktop add dsh-hyperframes
 ```
 
-For the web version, replace `desktop` with `web`. Restart DSH after installation.
-
-For a marketplace `spawn … ENOENT` error, follow the [installation troubleshooting](docs/USAGE.en.md#marketplace-error-spawn--enoent). The npm package name is `dsh-hyperframes`.
+For the web profile, replace `desktop` with `web`. Restart that DSH profile after installation. The package’s DSH requirement is `>=0.2.1-rc.3`.
 
 ## Start using it
 
@@ -49,25 +39,33 @@ For a marketplace `spawn … ENOENT` error, follow the [installation troubleshoo
 4. Start the preview, inspect it, then stop it before editing or exporting MP4.
 5. Play and download the result and keep an editable backup. Search or sort the library later, or restore an archive.
 
-## Requirements and configuration
+Example request：
 
-The plugin preserves upstream skills and adds a local workbench. First use needs Node.js 22.19+ / 24+ and npm; FFmpeg must also be in PATH. Dependencies are downloaded only when you explicitly prepare the environment.
+> Create an HTML product video. Confirm the script and structure before previewing and exporting MP4.
 
-Detailed configuration, tool arguments and troubleshooting are in the [usage guide](docs/USAGE.en.md). For standalone development, follow the Node requirement in [package.json](package.json).
+## Before you start
 
-## Documentation
+Prepare the official rendering environment on first use. Export again after changing a project.
 
-- [Usage and troubleshooting](docs/USAGE.en.md)
-- [Changelog](CHANGELOG.md)
-- [Validation scope and history](docs/VALIDATION.md)
-- [Report a problem or suggest a feature](https://github.com/STARDUSTLC666/dsh-hyperframes/issues)
+Configuration, detailed tools and troubleshooting: [full reference](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.en.md).
 
 ## Plugin updates
 
-Requires DSH 0.2.1-rc.3 or newer. Update controls sit at the bottom of the existing workbench, or native plugin details for plugins without a workbench. Checks, release notes and preferences expand in place, with no separate update page or settings menu. Automatic checks are on by default; **automatic installation is off by default**. Only explicit opt-in permits compatible stable patches while idle with no unsaved changes. Preferences are independent, with per-plugin disable, deferral and ignore controls. No forced DSH restart or upgrade, and local-source installations stay unchanged. Suite components explain and operate on the whole Suite in the same footer.
+Check updates at the bottom of the workbench or native plugin details. Automatic checks are on by default; **automatic installation is off**. You choose whether to install and when to restart. Suite-managed components update with their bundle. [Update behavior](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.en.md).
 
-Older releases need one manual update in native plugin management to acquire these controls. Publishing to npm does not replace an existing user installation.
+## Documentation
+
+- [Full usage, configuration and limits](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/REFERENCE.en.md)
+- [Release notes](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/CHANGELOG.md)
+- [Validation scope and history](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/docs/VALIDATION.md)
+
+## Feedback and contributions
+
+If the plugin helps, a Star makes it easier for others to discover. Report problems or suggest improvements in [Issues](https://github.com/STARDUSTLC666/dsh-hyperframes/issues); code and documentation [PRs](https://github.com/STARDUSTLC666/dsh-hyperframes/pulls) are welcome. Include versions and reproduction steps, and remove credentials from reports.
 
 ## License
 
-[MIT](LICENSE). Upstream skill licensing is documented in the usage guide.
+[MIT](https://github.com/STARDUSTLC666/dsh-hyperframes/blob/master/LICENSE)
+
+<a id="what-it-does"></a>
+<a id="requirements-and-configuration"></a>
