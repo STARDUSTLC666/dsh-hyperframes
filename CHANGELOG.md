@@ -1,5 +1,13 @@
 # 更新记录
 
+## 0.11.5 (2026-11-04)
+
+- 同步共享界面：嵌入设置时继承宿主底色，输入框跟随主题，空状态保持可读宽度；新版 DSH 可显示插件设置图标。
+- Align embedded surfaces, themed inputs, readable empty states and optional native settings icons.
+- 补齐 FFprobe 准备检查、已有浏览器与下载镜像设置；返回项目及任务编号。
+- Check FFprobe, reuse configured browsers and mirror settings, and expose project/job ids.
+
+
 ## 0.11.4 (2026-10-30)
 
 - 视频工作台：导出前新增检查清单（标题、画幅与时长、素材数、已保存修订、渲染环境、上一份成品对应的修订）；预览与导出任务显示真实步骤进度，失败后可就同一修订直接重试；同一工程在别处更新时不再提供会导致反复冲突的「保存后继续」，改为显式重新载入或保留输入；保存/导出按钮不可用时给出具体原因；空工程列表提供「新建视频」入口。
