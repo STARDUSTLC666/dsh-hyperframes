@@ -2,7 +2,7 @@
 
 # HyperFrames
 
-**Create and export HTML-based videos from DSH.**
+**Create and export HTML-based videos in DeepSeek Harness with a 5-theme light studio workbench.**
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
@@ -20,6 +20,7 @@
 - Start from title, product or slideshow templates.
 - Edit content, upload media and reorder images.
 - Use the official preview and local renderer, keeping editable source.
+- Adapted for DeepSeek Harness `>=0.2.2-rc.3` with 5 switchable studio themes (Native Airy / Warm Cream / Claude Warmth / Bright 8-Bit / Airy Mint).
 
 ## Install
 

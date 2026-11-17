@@ -2,7 +2,7 @@
 
 # HyperFrames
 
-**在 DSH 里用 HTML 创作并导出视频。**
+**在 DeepSeek Harness 中用 HTML 创作并导出视频，内置可切换五套明亮风格的工作台界面。**
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
@@ -20,6 +20,7 @@
 - 从标题卡、产品介绍和图文轮播模板开始。
 - 编辑内容、上传素材并调整图片顺序。
 - 使用官方预览与本机渲染，保留可编辑工程。
+- 适配 DeepSeek Harness `>=0.2.2-rc.3`：工作台与弹窗支持「原生清透 / 米白纸感 / Claude 暖书卷 / 8-Bit 像素 / 晴空薄荷」五套明亮主题切换。
 
 ## 安装
 
