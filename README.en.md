@@ -22,6 +22,15 @@
 - Use the official preview and local renderer, keeping editable source.
 - Adapted for DeepSeek Harness `>=0.2.2-rc.3` with 5 switchable studio themes (Native Airy / Warm Cream / Claude Warmth / Bright 8-Bit / Airy Mint).
 
+<details>
+<summary>See an example</summary>
+
+![HyperFrames workbench](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/docs/assets/intro/screen-en.webp)
+
+Captured in a local DeepSeek Harness environment with synthetic sample project data.
+
+</details>
+
 ## Install
 
 Open **Plugins** in the DSH desktop app and install `dsh-hyperframes`. If the CLI is available:
