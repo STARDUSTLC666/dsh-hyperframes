@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 
 const root = fileURLToPath(new URL('../', import.meta.url)), provenance = JSON.parse(readFileSync(join(root, 'skills/UPSTREAM.json'), 'utf8'))
 test('the recorded upstream skill resources are complete and retain their verified contents', () => {
@@ -15,7 +15,7 @@ test('the recorded upstream skill resources are complete and retain their verifi
 })
 test('npm-filtered development metadata retains the original bytes through recorded aliases', () => {
   const aliases = Object.entries(provenance.packagedPaths)
-  assert.equal(aliases.length, 5)
+  assert.equal(aliases.length, 4)
   for (const [source, packaged] of aliases) {
     assert.equal(source.split('/').at(-1), '.gitignore')
     assert.equal(packaged, source.slice(0, -'.gitignore'.length) + 'UPSTREAM.gitignore')
@@ -24,8 +24,8 @@ test('npm-filtered development metadata retains the original bytes through recor
 })
 test('the official plugin launcher pins its own release and cannot install standalone skills', async () => {
   const { invocation, pluginVersion } = await import('../skills/hyperframes/scripts/plugin-cli.mjs')
-  assert.equal(pluginVersion(root), provenance.version)
-  const call = invocation(['render', '.'], { version: provenance.version, platform: 'win32', node: 'C:\\node\\node.exe', pathExists: () => true, env: {} })
+  assert.equal(pluginVersion(root, resolve(root, '../validation-project')), provenance.version)
+  const call = invocation(['render', '.'], { version: provenance.version, platform: 'win32', node: 'C:\\node\\node.exe', pathExists: () => true, env: {}, npmCwd: 'C:\\owned-home' })
   assert.ok(call.args.includes('hyperframes@' + provenance.version))
   assert.equal(call.env.HYPERFRAMES_SKIP_SKILLS, '1'); assert.equal(call.env.HYPERFRAMES_NO_UPDATE_CHECK, '1')
   assert.throws(() => invocation(['skills', 'update'], { version: provenance.version }), /plugin manager/)

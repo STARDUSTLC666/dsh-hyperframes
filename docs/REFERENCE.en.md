@@ -16,7 +16,7 @@ Feedback and contributions are welcome: report [issues](https://github.com/STARD
 
 Open the workbench from the native DSH sidebar. See the [workbench guide](WORKBENCH.md) for configuration and operating boundaries.
 
-Bundled skills: official HyperFrames 0.8.214, seven current skills with fourteen previous names retained as compatibility entries.
+Bundled skills: official HyperFrames 0.9.72, nine current skills with fourteen previous names retained as compatibility entries.
 
 Move images up or down in the Media tab, including with the keyboard. The order saves immediately; export again to apply it to a new MP4.
 

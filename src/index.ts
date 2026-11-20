@@ -37,7 +37,9 @@ export const SKILL_NAMES = [
   "pr-to-video",
   "product-launch-video",
   "remotion-to-hyperframes",
+  "reverse-any-video",
   "slideshow",
+  "style-sampling",
   "talking-head-recut"
 ] as const
 

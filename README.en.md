@@ -79,3 +79,7 @@ If the plugin helps, a Star makes it easier for others to discover. Report probl
 
 <a id="what-it-does"></a>
 <a id="requirements-and-configuration"></a>
+
+## Skills and runtime versions
+
+Bundled skills and the managed renderer are pinned to 0.9.72. Nine canonical skills and fourteen compatibility names are registered, including reverse-video and style-sampling workflows. DSH plugin updates own this bundle; existing user projects and lockfiles remain separate. Explicit preparation must finish successfully before preview/render. If an installed npm is invisible to Desktop, check its launch PATH (Homebrew commonly /opt/homebrew/bin or /usr/local/bin), restart DSH and retry. See the [usage guide](docs/USAGE.en.md) and [skill synchronization](docs/SKILL-SYNC.md).
