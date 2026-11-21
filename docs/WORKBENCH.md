@@ -54,6 +54,6 @@ Tool text includes project and job ids. Use the returned job id with `action: jo
 
 Preparation checks both FFmpeg and FFprobe. Configure an existing renderer through HYPERFRAMES_BROWSER_PATH before launching DSH. Explicit paths are validated; failed prerequisites never create a ready stamp.
 
-当前固定官方 CLI 为 0.9.72。不要把 `PUPPETEER_DOWNLOAD_BASE_URL` 当作未经验证的镜像配置；网络受限时可先准备浏览器，再用 `HYPERFRAMES_BROWSER_PATH` 指定其实际路径并重新准备环境。
+当前固定官方 CLI 为 0.9.77。不要把 `PUPPETEER_DOWNLOAD_BASE_URL` 当作未经验证的镜像配置；网络受限时可先准备浏览器，再用 `HYPERFRAMES_BROWSER_PATH` 指定其实际路径并重新准备环境。
 
-The official CLI is pinned to 0.9.72. Do not assume PUPPETEER_DOWNLOAD_BASE_URL is a verified mirror setting. On restricted networks, prepare a browser separately, configure its actual HYPERFRAMES_BROWSER_PATH and prepare the environment again.
+The official CLI is pinned to 0.9.77. Do not assume PUPPETEER_DOWNLOAD_BASE_URL is a verified mirror setting. On restricted networks, prepare a browser separately, configure its actual HYPERFRAMES_BROWSER_PATH and prepare the environment again.

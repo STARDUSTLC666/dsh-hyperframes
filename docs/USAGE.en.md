@@ -46,7 +46,7 @@ Open Settings → HyperFrames in DSH Web or Desktop.
 
 1. Create a video. Select title card, product card or slideshow; set the title/body, canvas and an integer duration of 3–30 seconds, then save.
 2. Upload local copies of PNG/JPEG images, one MP3/WAV background audio and one muted MP4 background video. Limits: 20 MB per asset, 40 MB total. Slideshows follow upload order and need at least two seconds per image.
-3. Explicitly prepare the environment on first use. It downloads official CLI 0.9.72; Windows uses its managed rendering browser, while other platforms reuse installed Chrome when available. Project editing remains available. FFmpeg must be installed and in PATH; restart DSH after changing PATH.
+3. Explicitly prepare the environment on first use. It downloads official CLI 0.9.77; Windows uses its managed rendering browser, while other platforms reuse installed Chrome when available. Project editing remains available. FFmpeg must be installed and in PATH; restart DSH after changing PATH.
 4. Start official Studio and inspect the picture. Stop this preview before editing or exporting. No window is opened automatically.
 5. Review the pre-export check (title, canvas and duration, media count, saved revision, renderer, which revision the last MP4 used), then play and download the MP4 in the workbench. Later edits preserve earlier MP4s and display a revision warning. Export again for a new final output.
 
@@ -90,7 +90,7 @@ Node.js 22.19+ (22.x) / 24+ + FFmpeg (`npx hyperframes`).
 
 ## Porting notes
 
-Official HyperFrames 0.9.72 is pinned: 238 verified npm dist/skills files plus six on-demand skills from the same v0.9.72 Git tag cf28a00053074df2afeb20da225400bd0dc7add0. Nine canonical skills and fourteen compatibility entries register 23 names, including reverse-any-video and style-sampling. skills/UPSTREAM.json records each npm/Git origin and DSH adaptation; missing npm gitHead fields and build-time rewrites are not represented as exact Git-tree identity. See [skill synchronization](SKILL-SYNC.md).
+Official HyperFrames 0.9.77 is pinned: 239 verified npm dist/skills files plus six on-demand skills from the same v0.9.77 Git tag a86ad213ed2aa78555635676980744d432a3f89f. Nine canonical skills and fourteen compatibility entries register 23 names, including reverse-any-video and style-sampling. skills/UPSTREAM.json records each npm/Git origin and DSH adaptation; missing npm gitHead fields and build-time rewrites are not represented as exact Git-tree identity. See [skill synchronization](SKILL-SYNC.md).
 
 ## Multi-harness
 

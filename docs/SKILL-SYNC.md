@@ -1,8 +1,8 @@
 # Pinned skill synchronization
 
-The upstream runtime/skill version is **0.9.72**. It is separate from the dsh-hyperframes package version.
+The upstream runtime/skill version is **0.9.77**. It is separate from the dsh-hyperframes package version.
 
-Source: the SRI-verified hyperframes@0.9.72 npm archive supplies 238 dist/skills files. Six on-demand skills omitted from that archive come from official v0.9.72 tag cf28a00053074df2afeb20da225400bd0dc7add0. Per-file origins distinguish generated npm bytes and Git bytes. Fourteen previous DSH names remain compatibility entries.
+Source: the SRI-verified hyperframes@0.9.77 npm archive supplies 239 dist/skills files. Six on-demand skills omitted from that archive come from official v0.9.77 tag a86ad213ed2aa78555635676980744d432a3f89f. Per-file origins distinguish generated npm bytes and Git bytes. Fourteen previous DSH names remain compatibility entries.
 
 ## Input and commands
 

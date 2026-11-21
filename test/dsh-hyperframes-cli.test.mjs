@@ -9,7 +9,7 @@ import { forwardExit, invocation, launcherPath, runCli } from '../scripts/dsh-hy
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 
-function installed(t, version = '0.9.72') {
+function installed(t, version = '0.9.77') {
   const home = mkdtempSync(join(tmpdir(), 'dsh-hyperframes-cli-'))
   t.after(() => rmSync(home, { recursive: true, force: true }))
   const pluginDirectory = join(home, 'installed', 'dsh-hyperframes'), cwd = join(home, 'project')
@@ -43,7 +43,7 @@ test('Windows Electron uses PATH npm JavaScript and preserves the upstream home/
   const before = { ...env }, args = ['render', 'scene with spaces', '--output', 'a&b.mp4']
   const spec = invocation(args, { ...fixture, env, platform: 'win32', node, npmCwd: 'C:\\Users\\Fixture', fileSystem: npmFiles('win32', [npm, npx]) })
   assert.equal(spec.command, node)
-  assert.deepEqual(spec.args, [npx, '--yes', 'hyperframes@0.9.72', ...args])
+  assert.deepEqual(spec.args, [npx, '--yes', 'hyperframes@0.9.77', ...args])
   assert.equal(spec.cwd, 'C:\\Users\\Fixture')
   assert.equal(spec.env.HYPERFRAMES_PLUGIN_CWD, fixture.cwd)
   assert.equal(spec.env.npm_execpath, npm)
@@ -53,8 +53,8 @@ test('Windows Electron uses PATH npm JavaScript and preserves the upstream home/
   assert.equal(spec.env.electron_run_as_node, undefined)
   assert.equal(spec.env.NoDefaultCurrentDirectoryInExePath, '1')
   for (const name of ['HYPERFRAMES_SKIP_SKILLS', 'HYPERFRAMES_NO_UPDATE_CHECK']) assert.equal(spec.env[name], '1')
-  assert.equal(spec.env.HYPERFRAMES_PLUGIN_VERSION, '0.9.72')
-  assert.equal(spec.env.HYPERFRAMES_SKILL_PKG_VERSION, '0.9.72')
+  assert.equal(spec.env.HYPERFRAMES_PLUGIN_VERSION, '0.9.77')
+  assert.equal(spec.env.HYPERFRAMES_SKILL_PKG_VERSION, '0.9.77')
   assert.deepEqual(env, before)
 })
 
@@ -63,7 +63,7 @@ for (const prefix of ['/opt/homebrew', '/usr/local']) test('Homebrew npx is run 
   const node = '/Applications/DSH NEXT.app/Contents/MacOS/DSH NEXT'
   const spec = invocation(['doctor'], { ...fixture, platform: 'darwin', node, npmCwd: '/Users/fixture', env: { PATH: prefix + '/bin:/usr/bin' }, fileSystem: npmFiles('darwin', [npm, npx]) })
   assert.equal(spec.command, node)
-  assert.deepEqual(spec.args, [npx, '--yes', 'hyperframes@0.9.72', 'doctor'])
+  assert.deepEqual(spec.args, [npx, '--yes', 'hyperframes@0.9.77', 'doctor'])
   assert.equal(spec.cwd, '/Users/fixture')
   assert.equal(spec.env.HYPERFRAMES_PLUGIN_CWD, fixture.cwd)
   assert.equal(spec.env.npm_node_execpath, node)
@@ -92,7 +92,7 @@ test('upstream managed-skill, pinned-version and minimum-version protections sta
   const options = { ...fixture, platform: 'linux', node: '/usr/bin/node', env: { PATH: '/usr/bin', HYPERFRAMES_STANDALONE_CLI_VERSION: '0.0.1' }, npmCwd: '/home/fixture', fileSystem: npmFiles('linux', [npm, npx]) }
   assert.throws(() => invocation(['skills', 'update'], options), /release-managed/)
   assert.throws(() => invocation(['--cli-version', 'latest', 'doctor'], options), /plugin manager selects/)
-  assert.ok(invocation(['doctor'], options).args.includes('hyperframes@0.9.72'))
+  assert.ok(invocation(['doctor'], options).args.includes('hyperframes@0.9.77'))
   writeFileSync(join(fixture.pluginDirectory, 'plugin.json'), JSON.stringify({ name: 'hyperframes', version: '0.9.67' }))
   assert.throws(() => invocation(['doctor'], options), /0\.9\.68 or newer/)
 })
@@ -142,5 +142,5 @@ test('an installed copy resolves its own manifest independently of the project a
   const launcher = join(fixture.pluginDirectory, 'scripts/dsh-hyperframes-cli.mjs')
   const result = spawnSync(process.execPath, [launcher, '--script', helper, output, 'literal ; $(arg)'], { cwd: fixture.cwd, env: { ...process.env, ELECTRON_RUN_AS_NODE: '1' }, encoding: 'utf8', shell: false, windowsHide: true })
   assert.equal(result.status, 17, result.stderr)
-  assert.deepEqual(JSON.parse(readFileSync(output, 'utf8')), { cwd: fixture.cwd, version: '0.9.72', entry: launcher, electron: '1', args: ['literal ; $(arg)'] })
+  assert.deepEqual(JSON.parse(readFileSync(output, 'utf8')), { cwd: fixture.cwd, version: '0.9.77', entry: launcher, electron: '1', args: ['literal ; $(arg)'] })
 })

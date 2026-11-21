@@ -1,5 +1,10 @@
 # 更新记录
 
+## 0.13.10 (2026-11-22)
+
+- 同步官方上游 HyperFrames 技能与受管理渲染运行时至 `0.9.77`（SRI 校验的 npm `dist/skills` 239 文件，新增 `hyperframes-cli/references/unattended.md`；同版本官方标签 `v0.9.77` / `a86ad213ed` 补齐 6 个按需技能 101 文件）。
+- 纳入上游 `media-use`、`hyperframes-cli`、`remotion-to-hyperframes` 的符号链接写防护、无头运行指引与生图模型清理，保留全部 9 个规范技能与 14 个兼容入口及 `skills/UPSTREAM.json` 逐文件来源摘要。
+
 ## 0.13.9 (2026-11-21)
 
 - 补齐 `runs/` 运行目录生命周期回收（渲染后清理中间文件、淘汰第 6 份旧成品目录、预览停止与失败/取消自动删除临时目录）及上传写盘失败回滚，避免磁盘持续增长。

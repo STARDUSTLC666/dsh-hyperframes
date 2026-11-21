@@ -1,5 +1,5 @@
 {
   "name": "hyperframes",
-  "version": "0.9.72",
+  "version": "0.9.77",
   "description": "Official HyperFrames release packaged by dsh-hyperframes. DSH owns bundle updates; this pins its skills and CLI runtime."
 }

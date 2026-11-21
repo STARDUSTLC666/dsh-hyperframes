@@ -46,7 +46,7 @@ dsh plugin --profile web remove dsh-hyperframes
 
 1. 新建视频，选择标题卡、产品介绍或图文轮播，填写标题/正文、画幅和 3–30 秒时长，明确保存。
 2. 上传 PNG/JPEG、一个背景音频（MP3/WAV）、一个静音背景视频（MP4）的副本。每个文件最多 20 MB、总计 40 MB；轮播按上传顺序，每张至少两秒。
-3. 首次点击「准备渲染环境」。此时下载固定版本官方 CLI 0.9.72；Windows 下载官方专用渲染浏览器，其他系统优先复用已安装的 Chrome；可以继续编辑工程。下载失败保留工程，查看运行记录后重试。需先安装 FFmpeg 并加入 PATH，重启 DSH 后生效。
+3. 首次点击「准备渲染环境」。此时下载固定版本官方 CLI 0.9.77；Windows 下载官方专用渲染浏览器，其他系统优先复用已安装的 Chrome；可以继续编辑工程。下载失败保留工程，查看运行记录后重试。需先安装 FFmpeg 并加入 PATH，重启 DSH 后生效。
 4. 启动官方 Studio，检查画面。停止本次预览后再编辑或导出；不会自动打开或占用前台窗口。
 5. 导出 MP4 前先看导出前检查（标题、画幅与时长、素材数、已保存修订、渲染环境、上一份成品对应哪次修订），确认后在工作台播放并下载。工程更新后保留旧成品并显示旧修订提醒；再次导出即可生成新成片。
 
@@ -94,7 +94,7 @@ Node.js 22.19+ (22.x) / 24+ + FFmpeg（`npx hyperframes`）。
 
 ## 移植说明
 
-技能采用官方 HyperFrames 0.9.72：已核验 SRI 的 npm `dist/skills` 238 文件为主，并以同版本 `v0.9.72` 提交 `cf28a00053074df2afeb20da225400bd0dc7add0` 补齐 npm 未分发的 6 个按需技能。9 个当前技能和 14 个兼容名称合计注册 23 项，包含新增 `reverse-any-video` 与 `style-sampling`。每个文件的 npm/Git 来源及 DSH 适配摘要均记录在 `skills/UPSTREAM.json`；不把缺失的 npm gitHead 或构建后的内容伪称为与原始 Git 树完全相同。来源与安全同步流程见 [技能同步](SKILL-SYNC.md)。
+技能采用官方 HyperFrames 0.9.77：已核验 SRI 的 npm `dist/skills` 239 文件为主，并以同版本 `v0.9.77` 提交 `a86ad213ed2aa78555635676980744d432a3f89f` 补齐 npm 未分发的 6 个按需技能。9 个当前技能和 14 个兼容名称合计注册 23 项，包含新增 `reverse-any-video` 与 `style-sampling`。每个文件的 npm/Git 来源及 DSH 适配摘要均记录在 `skills/UPSTREAM.json`；不把缺失的 npm gitHead 或构建后的内容伪称为与原始 Git 树完全相同。来源与安全同步流程见 [技能同步](SKILL-SYNC.md)。
 
 ## 跨平台使用
 
