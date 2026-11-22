@@ -1,5 +1,13 @@
 # 更新记录
 
+## 0.14.0 (2026-11-22)
+
+- **OP-DSH 实体多轨导演台（默认进入，支持一键切回「表单」模式）**：
+  - 工程编辑页新增紧凑「导演台 / 表单」切换条，默认呈现暗色凹陷实时监看台（按 `16:9` / `9:16` / `1:1` 实时预览分镜、标题与时间码 `TC`）、可点击跳帧的 **24-LED 渲染矩阵**，以及成片 MP4 切换回放。
+  - 右侧实体参数条集成机械画幅键、视觉模板胶囊、3–30 秒触控滑杆、可折叠分镜脚本与素材入口；底部全宽多轨时间线提供朱红 `▶ 播放` / `❚❚ 暂停` 硬件按键（默认暂停，遵循 WCAG 2.2.2）及 `setPointerCapture` 指针擦洗的「画面轨 / 字幕轨 / 节奏轨」。
+- **交互引导、英文顶栏适配与文档焕新**：更新顶栏 5 步「? 引导」聚光灯导览锚点，优化中英文宽/窄视口顶栏无截断排布，同步刷新双语 README、使用说明、8 张浅深色流程示意图与最新工作台实景截图；继续保持 `sync-skill-bundle.mjs` 与 `dsh-remotion` 共享源一致。
+- **OP-DSH Hardware Multi-Track Director Console (default view with 1-click `Form` toggle)**: recessed live stage monitor (`16:9`/`9:16`/`1:1` with timecode `TC`), clickable 24-LED Render Matrix, tactile parameter strip, vermilion Play/Pause key (paused by default per WCAG 2.2.2), pointer-scrubbable Video/Caption/Pace timeline, updated 5-step `? Tour`, crisp English header layout, and refreshed bilingual docs, workflow SVGs, and screenshots.
+
 ## 0.13.10 (2026-11-22)
 
 - 同步官方上游 HyperFrames 技能与受管理渲染运行时至 `0.9.77`（SRI 校验的 npm `dist/skills` 239 文件，新增 `hyperframes-cli/references/unattended.md`；同版本官方标签 `v0.9.77` / `a86ad213ed` 补齐 6 个按需技能 101 文件）。

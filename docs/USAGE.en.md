@@ -42,13 +42,13 @@ Then restart the web service. To clean up fully, also remove the plugin entry fr
 
 ## Video workbench
 
-Open Settings → HyperFrames in DSH Web or Desktop.
+Open **HyperFrames** from the sidebar (or Settings → HyperFrames) in DSH Web or Desktop. The editor opens in the **OP-DSH Multi-Track Hardware Director Console** by default (with a 1-click toggle to classic **Form** mode), 13 bright themes, 8 font pairings, and a header **? Tour** coachmark guide:
 
-1. Create a video. Select title card, product card or slideshow; set the title/body, canvas and an integer duration of 3–30 seconds, then save.
-2. Upload local copies of PNG/JPEG images, one MP3/WAV background audio and one muted MP4 background video. Limits: 20 MB per asset, 40 MB total. Slideshows follow upload order and need at least two seconds per image.
+1. **Direct & scrub in the console**: Click **New video** or open a project. Use the tactile right strip to edit the title, press `16:9 / 9:16 / 1:1` mechanical keys, pick a template, set a 3–30s duration, and expand **Script**; press the vermilion `▶ Play` key or drag across the Video / Caption / Pace tracks and 24-LED Render Matrix to scrub live frames and `TC` timecode in the recessed stage monitor, then save.
+2. Upload local copies of PNG/JPEG/WebP images, one MP3/WAV/M4A background audio and one muted MP4 background video. Limits: 20 MB per asset, 40 MB total. Slideshows follow upload order and need at least two seconds per image.
 3. Explicitly prepare the environment on first use. It downloads official CLI 0.9.77; Windows uses its managed rendering browser, while other platforms reuse installed Chrome when available. Project editing remains available. FFmpeg must be installed and in PATH; restart DSH after changing PATH.
 4. Start official Studio and inspect the picture. Stop this preview before editing or exporting. No window is opened automatically.
-5. Review the pre-export check (title, canvas and duration, media count, saved revision, renderer, which revision the last MP4 used), then play and download the MP4 in the workbench. Later edits preserve earlier MP4s and display a revision warning. Export again for a new final output.
+5. Review the pre-export check (title, canvas and duration, media count, saved revision, renderer, which revision the last MP4 used), then switch the monitor to **MP4** to play and download the output in the workbench. Later edits preserve earlier MP4s and display a revision warning. Export again for a new final output.
 
 Preview and export jobs show their current step (for example "Step 3 / 4 · Rendering MP4"), a collapsible job log and a cancel button. A failed job keeps the project and offers "Retry this task" without re-entering input. A project changed elsewhere is never overwritten silently: the banner offers "Reload the latest version (discard my input)" or "Keep my input for now", and the unsaved-changes dialog blocks "Save and continue" so the same conflict cannot repeat. When Save or Export is unavailable, hover the button to read the exact reason (unsaved changes, renderer not prepared, title or duration out of range).
 

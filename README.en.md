@@ -2,7 +2,7 @@
 
 # HyperFrames
 
-**Create and export HTML-based videos in DeepSeek Harness with a 5-theme light studio workbench.**
+**Create and export HTML-based videos in DeepSeek Harness with the OP-DSH Hardware Multi-Track Director Console, 13 bright themes, and 8 dual-layer fonts.**
 
 [![npm](https://img.shields.io/npm/v/dsh-hyperframes)](https://www.npmjs.com/package/dsh-hyperframes) [![downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes) [![total downloads](https://raw.githubusercontent.com/STARDUSTLC666/dsh-suite/npm-downloads/assets/dsh-hyperframes-total-downloads.svg)](https://www.npmjs.com/package/dsh-hyperframes)
 
@@ -17,10 +17,10 @@
 
 ## Features
 
-- Start from title, product or slideshow templates.
-- Edit content, upload media and reorder images.
-- Use the official preview and local renderer, keeping editable source.
-- Adapted for DeepSeek Harness `>=0.2.2-rc.3` with 5 switchable studio themes (Native Airy / Warm Cream / Claude Warmth / Bright 8-Bit / Airy Mint).
+- **OP-DSH Multi-Track Hardware Director Console (default)**: Recessed dark-bezel Live Stage Monitor (`16:9` / `9:16` / `1:1`, live `TC` timecode & clickable 24-LED Render Matrix), tactile right parameter strip (mechanical aspect keys, template pills, 3–30s duration slider & inline script editor), and full-width scrubbable Video / Caption / Pace timeline deck with vermilion `▶ Play` key — plus 1-click toggle to classic **Form** mode.
+- Start from title, product or slideshow templates, upload local media and reorder slideshow images.
+- Use official Studio preview and local MP4 rendering while preserving editable project backups.
+- Adapted for DeepSeek Harness `>=0.2.2-rc.3` with 13 switchable bright studio themes and 8 Chinese+Latin font pairings (default: YouYuan Mono).
 
 <details>
 <summary>See an example</summary>
@@ -43,11 +43,11 @@ For the web profile, replace `desktop` with `web`. Restart that DSH profile afte
 
 ## Start using it
 
-1. Open HyperFrames in the sidebar, choose New video, select a template and enter content.
-2. Save the project before uploading media; reorder it in Media while preserving original files.
-3. Prepare the renderer in Environment on first use and wait for it to finish.
-4. Start the preview, inspect it, then stop it before editing or exporting MP4.
-5. Play and download the result and keep an editable backup. Search or sort the library later, or restore an archive.
+1. **Create or open a project**: Open HyperFrames in the sidebar and click **New video** or open an existing project to land in the **OP-DSH Director Console** (switch to classic **Form** mode anytime in 1 click).
+2. **Direct & scrub scenes live**: Edit the title, press mechanical `16:9 / 9:16 / 1:1` keys, pick templates, drag the 3–30s slider, and expand **Script** for line-by-line scenes; press the vermilion `▶ Play` key or pointer-scrub the Video / Caption / Pace tracks and 24-LED Render Matrix to inspect frame timing live.
+3. **Save & organize media**: Save the project before uploading images, audio, or muted video copies; reorder images in **Media** without altering original files.
+4. **Prepare renderer & Studio preview**: Prepare the official renderer in **Environment** on first use, then launch official Studio preview to verify final motion.
+5. **Export MP4 & keep backups**: Confirm the pre-export summary to render HD MP4 locally, switch the monitor to **MP4** for inline playback/download, and keep editable backups; search, sort, or restore archives anytime.
 
 Example request：
 
