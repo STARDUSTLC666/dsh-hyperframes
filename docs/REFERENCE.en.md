@@ -2,7 +2,7 @@
 
 # dsh-hyperframes
 
-[中文](../README.md)
+[中文](./REFERENCE.zh.md)
 
 ![dsh-hyperframes whale girl plugin cover](https://raw.githubusercontent.com/STARDUSTLC666/dsh-hyperframes/master/assets/cover-whale-girl.png)
 
@@ -22,14 +22,13 @@ Move images up or down in the Media tab, including with the keyboard. The order 
 
 ## What it does
 
-- Search projects and sort by update time or natural title; keep filters when returning to the library.
-- A settings workbench for templates, editable content, media uploads, official Studio preview and local MP4 export.
-- Title card, product card and slideshow templates in landscape, portrait or square format.
+- **OP-DSH Multi-Track Hardware Director Console** (v0.14.0 default editor with 1-click toggle to classic **Form** mode): recessed dark stage monitor (`TC` timecode + 24-LED render matrix), tactile right parameter strip, and scrubbable 3-track timeline (Video / Caption / Pace).
+- **Unified themes & font pairings**: 13 bright themes and 8 bilingual font pairings (rounded mono default), synchronized across DSH plugins.
+- Search projects, sort by update time or natural title, and archive/restore projects while keeping library filters.
+- Local video workbench for templates, editable content, media uploads and ordering, official Studio preview and local MP4 export.
+- Title card, product card and slideshow templates in landscape (16:9), portrait (9:16) or square (1:1) format.
 - Editable project backups, cancellable jobs and a warning when an MP4 uses an older revision.
-
-- Cover animation, audio, captions, keyframes and timeline workflows.
-- Create slideshows, launch videos, music-driven visuals and other formats.
-- Include upstream CLI and Studio guidance plus skill health checks.
+- All 23 official HyperFrames `0.9.77` skills (9 canonical skills + 14 compatibility entries, including `reverse-any-video` and `style-sampling`), covering animation, audio, captions, keyframes, CLI/Studio guidance and skill health checks.
 
 ## Install
 
@@ -66,7 +65,7 @@ Detailed configuration, tool arguments and troubleshooting are in the [usage gui
 
 ## Plugin updates
 
-Requires DSH 0.2.2-rc.3 or newer. Update controls sit at the bottom of the existing workbench, or native plugin details for plugins without a workbench. Checks, release notes and preferences expand in place, with no separate update page or settings menu. Automatic checks are on by default; **automatic installation is off by default**. Only explicit opt-in permits compatible stable patches while idle with no unsaved changes. Preferences are independent, with per-plugin disable, deferral and ignore controls. No forced DSH restart or upgrade, and local-source installations stay unchanged. Suite components explain and operate on the whole Suite in the same footer.
+Requires DSH 0.2.2-rc.3 or newer. Update controls sit at the bottom of the existing workbench, or native plugin details for plugins without a workbench. Checks, release notes and preferences expand in place, with no separate update page or settings menu. Automatic checks are on by default; **automatic installation is off by default**. Only explicit opt-in permits compatible stable updates (minor and patch by default, with an optional patch-only scope) while idle with no unsaved changes. Preferences are independent, with per-plugin disable, deferral and ignore controls. No forced DSH restart or upgrade, and local-source installations stay unchanged. Suite components explain and operate on the whole Suite in the same footer.
 
 Older releases need one manual update in native plugin management to acquire these controls. Publishing to npm does not replace an existing user installation.
 

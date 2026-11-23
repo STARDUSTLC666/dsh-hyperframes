@@ -4,7 +4,7 @@
 
 ## 本次改进
 
-保存工程后点击“归档此工程”，确认后在“已归档工程”中恢复。未保存修改和运行中的预览或渲染需先处理。归档保留文件、占用原有磁盘空间；它释放列表名额，不是磁盘清理。
+v0.14.0 升级 **OP-DSH 非线性多轨实体导演台**（默认启用，支持一键切回经典「表单」模式），内置凹陷暗色实时监看屏、24-LED 矩阵与可擦洗三轨时间轴，配备 13 套明亮风格主题、8 套中英双层字体与 5 步交互引导，并补齐官方 HyperFrames `0.9.77` 全部 23 项技能（含 `reverse-any-video` 与 `style-sampling`）。工程库继续支持归档与从「已归档工程」恢复（归档保留文件与原有磁盘空间，仅释放列表名额；未保存修改与运行中的任务需先处理）。
 
 ## 安装
 
@@ -85,7 +85,9 @@ dsh plugin --profile web remove dsh-hyperframes
 | `pr-to-video` | PR 转视频 |
 | `product-launch-video` | 产品发布视频 |
 | `remotion-to-hyperframes` | Remotion 项目迁移 |
+| `reverse-any-video` | 视频反推复刻（逐帧还原为可编辑 HyperFrames 工程）|
 | `slideshow` | 幻灯片视频 |
+| `style-sampling` | 风格采样制作新剧集（5 套成熟视频风格模板）|
 | `talking-head-recut` | 口播重剪 |
 
 ## 依赖

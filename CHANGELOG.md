@@ -1,5 +1,11 @@
 # 更新记录
 
+## 0.14.1 (2026-11-23)
+
+- 修复 DSH Desktop 工作台请求兼容：`MediaWorkbench.guard()` 放行桌面端 `Origin: dsh-app://app`（含 `Sec-Fetch-Site: cross-site` 豁免）并将跨源/非法请求头拒绝状态码由 `400` 修正为 `403`，与 `dsh-remotion` 保持共享源同步并补充回归测试。
+- 补齐文档与 CI 守卫：`docs/USAGE.{md,en.md}` 技能清单表补齐 `reverse-any-video` 与 `style-sampling`（23/23），同步 `docs/REFERENCE.{zh,en}.md` 与 `docs/USAGE*.md` 至 OP-DSH 导演台与兼容更新说明并修复语言切换链接；加固 `.github/workflows/ci.yml`（新增 `macos-latest`、`typecheck`、`node --check lib/client.js`、`npm-registry-verification.test.mjs` 与 `lib/` 漂移校验）。
+- Fix DSH Desktop workbench compatibility: exempt `Origin: dsh-app://app` (including `Sec-Fetch-Site: cross-site`) in `MediaWorkbench.guard()`, return HTTP `403` for cross-origin/invalid-header rejections (synced with `dsh-remotion`), complete all 23 skills in `docs/USAGE.{md,en.md}`, refresh bilingual reference docs, and harden CI (`macos-latest`, `typecheck`, `lib/client.js` syntax check, and `lib/` drift guard).
+
 ## 0.14.0 (2026-11-22)
 
 - **OP-DSH 实体多轨导演台（默认进入，支持一键切回「表单」模式）**：

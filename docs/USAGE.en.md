@@ -4,7 +4,7 @@
 
 ## Current improvements
 
-Save, choose Archive this project and confirm. Restore from Archived projects. Resolve unsaved edits and stop preview/render jobs first. Archives retain files and disk usage; they free active list slots rather than disk space.
+v0.14.0 introduces the **OP-DSH Multi-Track Hardware Director Console** (enabled by default with a 1-click toggle back to classic **Form** mode), featuring a recessed stage monitor, 24-LED render matrix, scrubbable 3-track timeline, 13 bright themes, 8 bilingual font pairings, a 5-step guided tour, and all 23 official HyperFrames `0.9.77` skills (including `reverse-any-video` and `style-sampling`). Project archiving and restoration remain supported from **Archived projects** (archives retain files and disk usage and free active list slots; resolve unsaved edits and stop active jobs first).
 
 ## Installation
 
@@ -81,7 +81,9 @@ The workbench supports template edits rather than a full timeline, transcription
 | `pr-to-video` | PR-to-video |
 | `product-launch-video` | Product launch videos |
 | `remotion-to-hyperframes` | Remotion project migration |
+| `reverse-any-video` | Reverse and rebuild any video frame by frame as an editable HyperFrames project |
 | `slideshow` | Slideshow videos |
+| `style-sampling` | Make a new episode in a proven video style template |
 | `talking-head-recut` | Talking-head recuts |
 
 ## Requirements
