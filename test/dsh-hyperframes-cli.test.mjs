@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
-import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
 import { homedir, tmpdir } from 'node:os'
 import { dirname, join, posix, win32 } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -142,5 +142,11 @@ test('an installed copy resolves its own manifest independently of the project a
   const launcher = join(fixture.pluginDirectory, 'scripts/dsh-hyperframes-cli.mjs')
   const result = spawnSync(process.execPath, [launcher, '--script', helper, output, 'literal ; $(arg)'], { cwd: fixture.cwd, env: { ...process.env, ELECTRON_RUN_AS_NODE: '1' }, encoding: 'utf8', shell: false, windowsHide: true })
   assert.equal(result.status, 17, result.stderr)
-  assert.deepEqual(JSON.parse(readFileSync(output, 'utf8')), { cwd: fixture.cwd, version: '0.9.77', entry: launcher, electron: '1', args: ['literal ; $(arg)'] })
+  assert.deepEqual(JSON.parse(readFileSync(output, 'utf8')), {
+    cwd: realpathSync(fixture.cwd),
+    version: '0.9.77',
+    entry: realpathSync(launcher),
+    electron: '1',
+    args: ['literal ; $(arg)'],
+  })
 })
