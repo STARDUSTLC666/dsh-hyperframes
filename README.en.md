@@ -24,7 +24,7 @@ Ships with the **OP-DSH Hardware Multi-Track Director Console**, official HyperF
 | **OP-DSH Director Console** | Recessed Live Stage Monitor (`16:9`/`9:16`/`1:1`, `TC` timecode & 24-LED matrix), tactile parameter strip & scrubbable Video/Caption/Pace timeline; 1-click toggle to classic **Form** |
 | **Official Skills & Templates** | Bundled HyperFrames skills (pinned `0.9.77`, including reverse-video & style sampling) with title, product, and slideshow templates |
 | **Studio Preview & Export** | Managed renderer setup, official Studio preview, local HD MP4 rendering & editable project backups |
-| **Unified Themes & Fonts** | Adapted for DSH `>=0.2.2-rc.3` with 13 bright studio themes and 8 dual-layer font pairings (default: YouYuan Mono) synced across plugins |
+| **Unified Themes & Fonts** | Adapted for DSH `>=0.2.2-rc.3` with 13 bright studio themes and 8 dual-layer font pairings (default: style-matched font) synced across plugins |
 
 <details>
 <summary>See a workbench example</summary>
